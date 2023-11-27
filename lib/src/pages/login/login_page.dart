@@ -3,44 +3,66 @@ import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
-  final TextEditingController emailController = TextEditingController();
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.thirdColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(35.0),
-            child: Column(
-              children: [
-                Text(
-                  'Iniciar Sesion',
-                  style: TextStyle(
-                    color: GlobalColors.primaryColor,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-                const SizedBox(height: 135),
-                
-                Text(
-                  'Email',
-                  style: TextStyle(
-                    color: GlobalColors.primaryColor,
-                    fontSize:18,
-                    fontWeight: FontWeight.normal
-                    
-                  ),
-                ),
-                const SizedBox(height: 10),
-                TextFormGlobal(controller: emailController),
-              ],
-            ),
+      bottomNavigationBar: Container(
+        height: 450,
+        child: _textdontAccount(),
+      ),
+      body: Stack(
+        children: [
+          Column(
+            children: [_tittle()],
           )
+        ],
+      ),
+    );
+  }
+
+  //Widgets_privados
+
+  Widget _textdontAccount() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('You don’t have an account?',
+        style: TextStyle(
+          color: GlobalColors.primaryColor,
+          fontSize: 16,
+          fontWeight: FontWeight.normal
+        ),
+      ), 
+        SizedBox(width: 10),
+        Text('Sign up',
+          style: TextStyle(
+          color: GlobalColors.secondColor,
+          fontSize: 16,
+          fontWeight: FontWeight.bold
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _tittle() {
+    return SafeArea(
+      child: Container(
+        margin: const EdgeInsets.only(top: 15),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            Text(
+              'Iniciar sesion',
+              style: TextStyle(
+                  color: GlobalColors.primaryColor,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            )
+          ],
         ),
       ),
     );
