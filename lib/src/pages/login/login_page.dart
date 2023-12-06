@@ -1,14 +1,16 @@
 import 'package:app/src/widgets/text_form_global.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
+import 'package:app/src/widgets/Backgroundtemplate.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: GlobalColors.thirdColor,
+    return BackgroundTemplate(
+        child: Scaffold(
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: Container(
         height: 450,
         child: _textdontAccount(),
@@ -20,7 +22,7 @@ class LoginPage extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 
   //Widgets_privados
@@ -29,20 +31,20 @@ class LoginPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('You don’t have an account?',
-        style: TextStyle(
-          color: GlobalColors.primaryColor,
-          fontSize: 16,
-          fontWeight: FontWeight.normal
-        ),
-      ), 
-        SizedBox(width: 10),
-        Text('Sign up',
+        Text(
+          'You don’t have an account?',
           style: TextStyle(
-          color: GlobalColors.secondColor,
-          fontSize: 16,
-          fontWeight: FontWeight.bold
-          ),
+              color: GlobalColors.primaryColor,
+              fontSize: 16,
+              fontWeight: FontWeight.normal),
+        ),
+        SizedBox(width: 10),
+        Text(
+          'Sign up',
+          style: TextStyle(
+              color: GlobalColors.secondColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold),
         ),
       ],
     );
