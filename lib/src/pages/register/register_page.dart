@@ -1,26 +1,20 @@
-import 'package:app/src/pages/login/login_controller.dart';
-import 'package:app/src/widgets/text_form_global.dart';
+import 'package:app/src/pages/register/register_controller.dart';
+import 'package:app/src/pages/register2/register_page2.dart';
+import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
-import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginController cont = Get.put(LoginController());
+class RegisterPage extends StatelessWidget {
+  RegisterController cont = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
     return BackgroundTemplate(
         child: Scaffold(
       backgroundColor: Colors.transparent,
-      bottomNavigationBar: Container(
-          height: 70,
-          child: Column(
-            children: [_textdontAccount()],
-          )),
       body: Center(
         child: SingleChildScrollView(
           reverse: true,
@@ -29,13 +23,15 @@ class LoginPage extends StatelessWidget {
             children: [
               Column(
                 children: [
+                  _bottomBack(),
                   _tittle(),
                   _subtittle(),
                   _googleButton(),
                   _email(),
                   _password(),
-                  _loginbutton(),
-                  _textforPassword()
+                  _confiPassword(),
+                  _textforPassword(),
+                  _nextButton(),
                 ],
               )
             ],
@@ -47,45 +43,28 @@ class LoginPage extends StatelessWidget {
 
   //Widgets_privados
 
-  Widget _textdontAccount() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          'No tienes una cuenta?',
-          style: TextStyle(
-              color: GlobalColors.primaryColor,
-              fontSize: 16,
-              fontWeight: FontWeight.normal),
-        ),
-        SizedBox(width: 10),
-        GestureDetector(
-          onTap: () => cont.gotoRegisterPage(),
-          child: Text(
-            'Registrate',
-            style: TextStyle(
-                color: GlobalColors.secondColor,
-                fontSize: 16,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
+  Widget _bottomBack() {
+    return SafeArea(
+      child: Container(
+          child: Row(children: [
+        IconButton(
+            onPressed: () => Get.back(), icon: Icon(Icons.arrow_back_ios)),
+      ])),
     );
   }
 
   Widget _textforPassword() {
-    return SafeArea(
+    return Container(
       child: Container(
-        margin: EdgeInsets.only(top: 5),
+        margin: const EdgeInsets.only(top: 15),
         alignment: Alignment.center,
         child: Column(
           children: [
             Text(
-              'Olvidaste tu contraseña',
+              'Acepto las condiciones del servicio y la política de privacidad',
               style: GoogleFonts.rubik(
-                  color: GlobalColors.primaryColor,
-                  fontSize: 15,
+                  color: Color.fromRGBO(103, 114, 148, 100),
+                  fontSize: 12,
                   fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             ),
@@ -103,10 +82,10 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'Bienvenido',
+              'Únete a nosotros para empezar a buscar enfermeros especializado',
               style: GoogleFonts.rubik(
                   color: Colors.black,
-                  fontSize: 30,
+                  fontSize: 25,
                   fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
@@ -124,7 +103,7 @@ class LoginPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Puedes buscar enfermeros y solicitar sus servicios de enfermería.',
+            'Podrás buscar enfermeros y solicitar sus servicios de enfermería.',
             style: GoogleFonts.rubik(
               color: Color.fromRGBO(103, 114, 148, 100),
               fontSize: 15,
@@ -142,7 +121,7 @@ class LoginPage extends StatelessWidget {
       //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       primary: Colors.white,
       minimumSize: Size(88, 36),
-      padding: EdgeInsets.symmetric(horizontal: 120, vertical: 18),
+      padding: EdgeInsets.symmetric(horizontal: 125, vertical: 18),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(12),
@@ -225,6 +204,33 @@ class LoginPage extends StatelessWidget {
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(18),
             prefixIcon: Icon(
+              Icons.lock_outline,
+              color: Color.fromRGBO(103, 114, 148, 16),
+            ),
+            hintStyle: TextStyle(
+              height: 1,
+            )),
+      ),
+    );
+  }
+
+  Widget _confiPassword() {
+    return Container(
+      margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Color.fromRGBO(103, 114, 148, 16)),
+      ),
+      child: TextFormField(
+        controller: cont.confirmPasswordController,
+        obscureText: true,
+        keyboardType: TextInputType.visiblePassword,
+        decoration: const InputDecoration(
+            hintText: 'Confirmar Contraseña',
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.all(18),
+            prefixIcon: Icon(
               Icons.lock,
               color: Color.fromRGBO(103, 114, 148, 16),
             ),
@@ -235,7 +241,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _loginbutton() {
+  Widget _nextButton() {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       primary: GlobalColors.primaryColor,
@@ -246,20 +252,23 @@ class LoginPage extends StatelessWidget {
       ),
     );
     return Container(
-      margin: const EdgeInsets.only(
-          top: 20), // Puedes comentar o eliminar esta línea
+      margin: const EdgeInsets.only(top: 40),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ElevatedButton(
               style: raisedButtonStyle,
-              onPressed: () => cont.login(),
+              //colocar esto despues de ubicar todo
+              //onPressed: () => cont.register(),
+              onPressed: () {
+                Get.to(const RegisterPage2());
+              },
               child: Text(
-                'Ingresar',
+                'Siguiente',
                 style: GoogleFonts.rubik(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 17,
                   fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.center,

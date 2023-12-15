@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:ui' as ui;
 
-class BackgroundTemplate extends StatelessWidget {
+class BackgroundTemplateOnI extends StatelessWidget {
   final Widget child;
-  const BackgroundTemplate({super.key, required this.child});
+
+  const BackgroundTemplateOnI({Key? key, required this.child})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white, // Añade un color de fondo a la Stack
+      color: Colors.white,
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.topLeft,
-            child: Image.asset('assets/img/blurARI.png'),
+            alignment: Alignment.topRight,
+            child: Image.asset('assets/img/blurARD.png'),
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: Image.asset('assets/img/blurAD.png'),
+            child: Image.asset(
+                'assets/img/realbg.png'), // Utiliza el SVG desenfocado
           ),
           child,
         ],

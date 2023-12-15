@@ -5,6 +5,7 @@ import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -17,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 4), () {
-      Get.to(const LoginPage());
+      Get.to(LoginPage());
     });
     return BackgroundTemplate(
       child: Scaffold(
@@ -28,16 +29,17 @@ class _SplashPageState extends State<SplashPage> {
             children: [
               Image.asset(
                 'assets/img/logo.png', // Corregido el typo en 'assets'
-                width: 250,
-                height: 250,
+                width: 200,
+                height: 150,
               ),
               Text(
-                '',
-                style: TextStyle(
-                  color: GlobalColors.primaryColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal,
+                'Nurse Hunt',
+                style: GoogleFonts.rubik(
+                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

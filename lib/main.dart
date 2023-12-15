@@ -1,4 +1,8 @@
 //import 'package:app/src/pages/login/login_page.dart';
+import 'package:app/src/pages/Onboarding/onboarding_page.dart';
+import 'package:app/src/pages/login/login_page.dart';
+import 'package:app/src/pages/register/register_page.dart';
+import 'package:app/src/pages/register2/register_page2.dart';
 import 'package:app/src/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +19,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -28,7 +31,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const SplashPage())
+        GetPage(name: '/', page: () => const SplashPage()),
+        GetPage(name: '/register', page: () => RegisterPage()),
+        GetPage(name: '/register2', page: () => const RegisterPage2()),
       ],
       navigatorKey: Get.key,
     );

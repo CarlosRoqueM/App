@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,6 +39,9 @@ dependencies:
   get: ^4.6.6
   hexcolor: ^3.0.1
   flutter_svg: ^2.0.9
+  google_fonts: ^6.1.0
+  iconsax: ^0.0.8
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +53,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/img/logo.png"
+  min_sdk_android: 21 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,10 +73,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/img/logo.png
-    - assets/svg/svg1.svg
-    - assets/svg/Ellipse142.svg
-    - assets/svg/Ellipse143.svg
+    - assets/img/
+    - assets/svg/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
