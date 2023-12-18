@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => const MainScreen()),
+        GetPage(name: '/', page: () =>  SplashPage()),
         GetPage(name: '/On1', page: () => OnboardingPage()),
         GetPage(name: '/On2', page: () => OnboardingPage2()),
         GetPage(name: '/On3', page: () => OnboardingPage3()),
