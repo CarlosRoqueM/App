@@ -12,13 +12,20 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
+
     return BackgroundTemplate(
         child: Scaffold(
       backgroundColor: Colors.transparent,
+      bottomNavigationBar: Container(
+          height: 130,
+          child: Column(
+            children: [_nextButton()],
+          )),
       body: Center(
         child: SingleChildScrollView(
           reverse: true,
-          padding: EdgeInsets.all(32),
+          padding: EdgeInsets.fromLTRB(28, hasNotch ? 0 : 39, 16, 10),
           child: Column(
             children: [
               Column(
@@ -31,7 +38,6 @@ class RegisterPage extends StatelessWidget {
                   _password(),
                   _confiPassword(),
                   _textforPassword(),
-                  _nextButton(),
                 ],
               )
             ],
@@ -77,7 +83,6 @@ class RegisterPage extends StatelessWidget {
   Widget _tittle() {
     return SafeArea(
       child: Container(
-        margin: const EdgeInsets.only(top: 10),
         alignment: Alignment.center,
         child: Column(
           children: [

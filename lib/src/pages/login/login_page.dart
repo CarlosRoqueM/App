@@ -1,4 +1,7 @@
+import 'package:app/src/Screen/main_screen.dart';
+import 'package:app/src/pages/home/home_page.dart';
 import 'package:app/src/pages/login/login_controller.dart';
+import 'package:app/src/pages/splash/splash_page.dart';
 import 'package:app/src/widgets/text_form_global.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
@@ -254,7 +257,10 @@ class LoginPage extends StatelessWidget {
         children: [
           ElevatedButton(
               style: raisedButtonStyle,
-              onPressed: () => cont.login(),
+              //onPressed: () => cont.login(), (para cuandose obtenga la coneccion )
+              onPressed: () {
+                Get.to(MainScreen());
+              },
               child: Text(
                 'Ingresar',
                 style: GoogleFonts.rubik(

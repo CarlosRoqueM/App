@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/src/pages/login/login_page.dart';
+import 'package:app/src/pages/onboarding/onboarding_page.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 4), () {
-      Get.to(LoginPage());
+      Get.to(OnboardingPage());
     });
     return BackgroundTemplate(
       child: Scaffold(

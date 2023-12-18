@@ -11,13 +11,19 @@ class RegisterPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
     return BackgroundTemplate(
         child: Scaffold(
       backgroundColor: Colors.transparent,
+      bottomNavigationBar: Container(
+          height: 95,
+          child: Column(
+            children: [_nextButton()],
+          )),
       body: Center(
         child: SingleChildScrollView(
           reverse: true,
-          padding: EdgeInsets.all(32),
+          padding: EdgeInsets.fromLTRB(28, hasNotch ? 0 : 39, 16, 10),
           child: Column(
             children: [
               _bottomBack(),
@@ -37,7 +43,6 @@ class RegisterPage2 extends StatelessWidget {
                   _apellidoMaterno(),
                   _location(),
                   _map(),
-                  _nextButton(),
                 ],
               )
             ],

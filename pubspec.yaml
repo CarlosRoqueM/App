@@ -42,6 +42,9 @@ dependencies:
   google_fonts: ^6.1.0
   iconsax: ^0.0.8
   flutter_launcher_icons: ^0.13.1
+  awesome_bottom_bar: ^1.2.4
+  curved_navigation_bar: ^1.0.3
+  shrink_sidemenu: ^2.0.0+2-null-safety
 
 dev_dependencies:
   flutter_test:
