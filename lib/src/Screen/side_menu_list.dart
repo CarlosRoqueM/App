@@ -1,5 +1,8 @@
+import 'package:app/src/pages/login/login_page.dart';
+import 'package:app/src/pages/profile/profile_page.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SideMenuList extends StatelessWidget {
@@ -12,6 +15,9 @@ class SideMenuList extends StatelessWidget {
       child: ListView(
         children: [
           ListTile(
+            onTap: () {
+              //Get.to(ProfilePage());
+            },
             leading: CircleAvatar(
               minRadius: 17,
               maxRadius: 20,
@@ -84,7 +90,9 @@ class SideMenuList extends StatelessWidget {
             height: 40,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.to(LoginPage());
+            },
             child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),

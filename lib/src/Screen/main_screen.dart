@@ -36,8 +36,10 @@ class _MainScreenState extends State<MainScreen> {
       child: BackgroundTemplate(
         child: Scaffold(
           appBar: AppBar(
+            //backgroundColor: Colors.transparent,
             backgroundColor: Colors.transparent,
-            toolbarHeight: 50,
+            elevation: 0.0,
+            toolbarHeight: 40,
             leading: IconButton(
                 splashColor: Colors.white,
                 onPressed: () {
@@ -47,7 +49,8 @@ class _MainScreenState extends State<MainScreen> {
                     sideMenuKey.currentState!.openSideMenu();
                   }
                 },
-                iconSize: 32,
+                iconSize: 25,
+                color: GlobalColors.primaryColor,
                 icon: Icon(Icons.menu)),
           ),
           body: IndexedStack(

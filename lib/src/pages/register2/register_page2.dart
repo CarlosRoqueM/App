@@ -1,4 +1,5 @@
 import 'package:app/src/pages/register3/register_page3.dart';
+import 'package:app/src/pages/splash/splashRegister_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
@@ -244,10 +245,10 @@ class RegisterPage2 extends StatelessWidget {
           ElevatedButton(
               style: raisedButtonStyle,
               onPressed: () {
-                Get.to(const RegisterPage3());
+                Get.to(const SplashRegisterPage());
               },
               child: Text(
-                'Siguiente',
+                'Aceptar',
                 style: GoogleFonts.rubik(
                   color: Colors.white,
                   fontSize: 17,
