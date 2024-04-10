@@ -143,7 +143,7 @@ class LoginPage extends StatelessWidget {
   Widget _googleButton() {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       //onPrimary: Color.fromRGBO(103, 114, 148, 100),
-      primary: Colors.white,
+      backgroundColor: Colors.white,
       minimumSize: Size(88, 36),
       padding: EdgeInsets.symmetric(horizontal: 120, vertical: 18),
       shape: const RoundedRectangleBorder(

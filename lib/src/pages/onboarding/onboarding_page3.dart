@@ -39,7 +39,7 @@ class OnboardingPage3 extends StatelessWidget {
   Widget _nextbutton() {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       //onPrimary: Color.fromRGBO(103, 114, 148, 100),
-      primary: GlobalColors.primaryColor,
+      backgroundColor: GlobalColors.primaryColor,
       minimumSize: Size(88, 36),
       padding: EdgeInsets.symmetric(horizontal: 120, vertical: 18),
       shape: const RoundedRectangleBorder(
