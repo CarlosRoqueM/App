@@ -13,18 +13,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
+    return BackgroundTemplate(
+      child: ListView(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 30, left: 15, right: 15, bottom: 15),
+            margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: GlobalColors.primaryColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
+                color: GlobalColors.primaryColor,
+                borderRadius: BorderRadius.circular(20)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -34,18 +31,7 @@ class HomePage extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          'Hola, Carlos Roque!',
-                          style: GoogleFonts.rubik(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Busca Enfermeros',
+                          'Bienvenido, Carlos Roque',
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontSize: 20,
@@ -59,9 +45,6 @@ class HomePage extends StatelessWidget {
                       backgroundImage: AssetImage('assets/img/profile2.jpg'),
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: 10,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
@@ -237,6 +220,7 @@ class HomePage extends StatelessWidget {
         margin: EdgeInsets.only(right: 15, left: 15),
         width: 200,
         decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.grey[300]!),
         ),
@@ -303,6 +287,7 @@ class HomePage extends StatelessWidget {
       margin: EdgeInsets.only(right: 15, left: 15),
       width: 120,
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey[300]!),
       ),

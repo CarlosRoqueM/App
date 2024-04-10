@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
         child: Scaffold(
           appBar: AppBar(
             //backgroundColor: Colors.transparent,
-            backgroundColor: Colors.transparent,
+            backgroundColor: Color.fromRGBO(0, 0, 0, .15),
             elevation: 0.0,
             toolbarHeight: 40,
             leading: IconButton(
@@ -52,6 +52,13 @@ class _MainScreenState extends State<MainScreen> {
                 iconSize: 25,
                 color: GlobalColors.primaryColor,
                 icon: Icon(Icons.menu)),
+            title: Text(
+              'Nurse hunt',
+              style: TextStyle(
+                  color: GlobalColors.primaryColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
           body: IndexedStack(
             index: selectedIndex,
