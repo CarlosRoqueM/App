@@ -72,52 +72,59 @@ class OnboardingPage2 extends StatelessWidget {
 
   Widget _img() {
     return SafeArea(
-      child: Container(
-        margin: const EdgeInsets.only(top: 20),
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            Image.asset('assets/img/img2.png'), // Utiliza el SVG desenfocado
-          ],
+      child: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.only(top: 20),
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              Image.asset('assets/img/img2.png'), // Utiliza el SVG desenfocado
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _tittle() {
-    return Container(
-      alignment: Alignment.center,
-      margin: EdgeInsets.only(top: 10),
-      child: Column(
-        children: [
-          Text(
-            'Busca enfermeros especializado',
-            style: GoogleFonts.rubik(
-                color: Colors.black, fontSize: 30, fontWeight: FontWeight.w600),
-            textAlign: TextAlign.center,
-          ),
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.only(top: 10),
+        child: Column(
+          children: [
+            Text(
+              'Busca enfermeros especializado',
+              style: GoogleFonts.rubik(
+                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _subtittle() {
-    return Container(
-      margin: const EdgeInsets.all(20), // Puedes comentar o eliminar esta línea
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Contamos con enfermeros especializados comprometidos con brindar cuidado excepcional. Los cuales estan listo para ofrecer atención personalizada y de alta calidad. Confíe en nosotros para cuidar de su salud con experiencia y dedicación',
-            style: GoogleFonts.rubik(
-              color: Color.fromRGBO(103, 114, 148, 100),
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
+    return SingleChildScrollView(
+      child: Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.only(top: 10),
+        child: Column(
+          children: [
+            Text(
+              'Enfermeros especializados listos para brindar atención personalizada y de alta calidad. Confíe en nuestra experiencia y dedicación.',
+              style: GoogleFonts.rubik(
+                color: Color.fromRGBO(103, 114, 148, 100),
+                fontSize: 15,
+                fontWeight: FontWeight.normal,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
