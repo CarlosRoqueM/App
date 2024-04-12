@@ -107,6 +107,7 @@ class OnboardingPage2 extends StatelessWidget {
     );
   }
 
+  //Cambios
   Widget _subtittle() {
     return SingleChildScrollView(
       child: Container(
