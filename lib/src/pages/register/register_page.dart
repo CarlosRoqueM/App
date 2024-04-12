@@ -1,5 +1,5 @@
 import 'package:app/src/pages/register/register_controller.dart';
-import 'package:app/src/pages/register2/register_page2.dart';
+import 'package:app/src/pages/register/register_page2.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';

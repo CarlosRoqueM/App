@@ -1,4 +1,4 @@
-import 'package:app/src/pages/register3/register_page3.dart';
+import 'package:app/src/pages/register/register_page3.dart';
 import 'package:app/src/pages/splash/splashRegister_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';

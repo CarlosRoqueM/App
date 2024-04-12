@@ -1,16 +1,18 @@
 //import 'package:app/src/pages/login/login_page.dart';
 import 'package:app/src/Screen/main_screen.dart';
 import 'package:app/src/pages/Onboarding/onboarding_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:app/src/pages/login/login_page.dart';
 import 'package:app/src/pages/onboarding/onboarding_page2.dart';
 import 'package:app/src/pages/onboarding/onboarding_page3.dart';
 import 'package:app/src/pages/register/register_page.dart';
-import 'package:app/src/pages/register2/register_page2.dart';
+import 'package:app/src/pages/register/register_page2.dart';
 import 'package:app/src/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+  dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 
