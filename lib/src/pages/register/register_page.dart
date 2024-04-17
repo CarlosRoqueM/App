@@ -15,108 +15,105 @@ class RegisterPage extends StatelessWidget {
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
 
     return BackgroundTemplate(
-        child: Scaffold(
-      backgroundColor: Colors.transparent,
-      bottomNavigationBar: Container(
-          height: 130,
-          child: Column(
-            children: [_nextButton()],
-          )),
-      body: Center(
-        child: SingleChildScrollView(
-          reverse: true,
-          padding: EdgeInsets.fromLTRB(28, hasNotch ? 0 : 39, 16, 10),
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  _bottomBack(),
-                  _tittle(),
-                  _subtittle(),
-                  _googleButton(),
-                  _email(),
-                  _password(),
-                  _confiPassword(),
-                  _textforPassword(),
-                ],
-              )
-            ],
+      child: Scaffold(
+        resizeToAvoidBottomInset: false, 
+        backgroundColor: Colors.transparent,
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.all(8),
+            height: 110,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [_nextButton()],
+            )),
+
+          body: Container(
+            padding: const EdgeInsets.all(8),
+            child: 
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _bottomBack(),
+                    _tittle(),
+                    _subtittle(),
+                    //_googleButton(),
+                    _email(),
+                    _password(),
+                    _confiPassword(),
+                    _textforPassword(),
+                  ],
+                )
+            ),
           ),
-        ),
-      ),
-    ));
+      );
   }
 
   //Widgets_privados
 
   Widget _bottomBack() {
     return SafeArea(
-      child: Container(
-          child: Row(children: [
-        IconButton(
-            onPressed: () => Get.back(), icon: Icon(Icons.arrow_back_ios)),
-      ])),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+          IconButton(
+              onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios)),
+        ]),
     );
   }
 
   Widget _textforPassword() {
     return Container(
-      child: Container(
-        margin: const EdgeInsets.only(top: 15),
-        alignment: Alignment.center,
+        padding: const EdgeInsets.all(8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Acepto las condiciones del servicio y la política de privacidad',
-              style: GoogleFonts.rubik(
-                  color: Color.fromRGBO(103, 114, 148, 100),
+              style: GoogleFonts.poppins(
+                  color: const Color.fromRGBO(103, 114, 148, 100),
                   fontSize: 12,
                   fontWeight: FontWeight.w500),
-              textAlign: TextAlign.center,
             ),
           ],
         ),
-      ),
     );
   }
 
   Widget _tittle() {
-    return SafeArea(
-      child: Container(
-        alignment: Alignment.center,
+    return Container(
+        padding: const EdgeInsets.all(8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Únete a nosotros para empezar a buscar enfermeros especializado',
-              style: GoogleFonts.rubik(
+              style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 25,
                   fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
+              
             ),
           ],
         ),
-      ),
     );
   }
 
   Widget _subtittle() {
     return Container(
-      margin: const EdgeInsets.all(20), // Puedes comentar o eliminar esta línea
+      padding: const EdgeInsets.all(8),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Podrás buscar enfermeros y solicitar sus servicios de enfermería.',
-            style: GoogleFonts.rubik(
-              color: Color.fromRGBO(103, 114, 148, 100),
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Podrás buscar enfermeros y solicitar sus servicios de enfermería.',
+              style: GoogleFonts.poppins(
+                color: const Color.fromRGBO(103, 114, 148, 100),
+                fontSize: 15,
+                fontWeight: FontWeight.normal,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          ],
+        
       ),
     );
   }
@@ -159,89 +156,97 @@ class RegisterPage extends StatelessWidget {
 
   Widget _email() {
     return Container(
-      margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Color.fromRGBO(103, 114, 148, 16),
+      padding: const EdgeInsets.all(8),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: Color.fromRGBO(103, 114, 148, 16),
+          ),
+          /*boxShadow: [
+             / BoxShadow(
+                  color: Color.fromRGBO(103, 114, 148, 16),
+                  blurRadius: 1,
+                  offset: Offset(0, 2))
+            ]*/
         ),
-        /*boxShadow: [
-           / BoxShadow(
+        child: TextFormField(
+          controller: cont.emailController,
+          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(
+              hintText: 'Ingresar Email',
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.all(18),
+              prefixIcon: Icon(
+                Icons.email,
                 color: Color.fromRGBO(103, 114, 148, 16),
-                blurRadius: 1,
-                offset: Offset(0, 2))
-          ]*/
-      ),
-      child: TextFormField(
-        controller: cont.emailController,
-        keyboardType: TextInputType.emailAddress,
-        decoration: const InputDecoration(
-            hintText: 'Ingresar Email',
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.all(18),
-            prefixIcon: Icon(
-              Icons.email,
-              color: Color.fromRGBO(103, 114, 148, 16),
-            ),
-            hintStyle: TextStyle(
-              height: 1,
-              color: Color.fromRGBO(103, 114, 148, 16),
-            )),
+              ),
+              hintStyle: TextStyle(
+                height: 1,
+                color: Color.fromRGBO(103, 114, 148, 16),
+              )),
+        ),
       ),
     );
   }
 
   Widget _password() {
     return Container(
-      margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Color.fromRGBO(103, 114, 148, 16)),
-      ),
-      child: TextFormField(
-        controller: cont.passwordController,
-        obscureText: true,
-        keyboardType: TextInputType.visiblePassword,
-        decoration: const InputDecoration(
-            hintText: 'Ingresar Contraseña',
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.all(18),
-            prefixIcon: Icon(
-              Icons.lock_outline,
-              color: Color.fromRGBO(103, 114, 148, 16),
-            ),
-            hintStyle: TextStyle(
-              height: 1,
-            )),
+      padding: const EdgeInsets.all(8),
+      child: Container(
+        //margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Color.fromRGBO(103, 114, 148, 16)),
+        ),
+        child: TextFormField(
+          controller: cont.passwordController,
+          obscureText: true,
+          keyboardType: TextInputType.visiblePassword,
+          decoration: const InputDecoration(
+              hintText: 'Ingresar Contraseña',
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.all(18),
+              prefixIcon: Icon(
+                Icons.lock_outline,
+                color: Color.fromRGBO(103, 114, 148, 16),
+              ),
+              hintStyle: TextStyle(
+                height: 1,
+              )),
+        ),
       ),
     );
   }
 
   Widget _confiPassword() {
     return Container(
-      margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Color.fromRGBO(103, 114, 148, 16)),
-      ),
-      child: TextFormField(
-        controller: cont.confirmPasswordController,
-        obscureText: true,
-        keyboardType: TextInputType.visiblePassword,
-        decoration: const InputDecoration(
-            hintText: 'Confirmar Contraseña',
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.all(18),
-            prefixIcon: Icon(
-              Icons.lock,
-              color: Color.fromRGBO(103, 114, 148, 16),
-            ),
-            hintStyle: TextStyle(
-              height: 1,
-            )),
+      padding: const EdgeInsets.all(8),
+      child: Container(
+        //margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color.fromRGBO(103, 114, 148, 16)),
+        ),
+        child: TextFormField(
+          controller: cont.confirmPasswordController,
+          obscureText: true,
+          keyboardType: TextInputType.visiblePassword,
+          decoration: const InputDecoration(
+              hintText: 'Confirmar Contraseña',
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.all(18),
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Color.fromRGBO(103, 114, 148, 16),
+              ),
+              hintStyle: TextStyle(
+                height: 1,
+              )),
+        ),
       ),
     );
   }
@@ -251,15 +256,14 @@ class RegisterPage extends StatelessWidget {
       //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       backgroundColor: GlobalColors.primaryColor,
       minimumSize: Size(88, 36),
-      padding: EdgeInsets.symmetric(horizontal: 120, vertical: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 140, vertical: 18),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
     return Container(
-      margin: const EdgeInsets.only(top: 40),
+      //padding: const EdgeInsets.all(8),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ElevatedButton(
