@@ -275,7 +275,7 @@ class RegisterPage extends StatelessWidget {
               },
               child: Text(
                 'Siguiente',
-                style: GoogleFonts.rubik(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 17,
                   fontWeight: FontWeight.w400,
