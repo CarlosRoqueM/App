@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
             ),
             // Lista de tarjetas horizontales
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -153,6 +153,13 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                padding: const EdgeInsets.only(right: 12, left: 12),
+                child: const Divider(
+                  //thickness: 10,
+                  color: Color.fromRGBO(103, 114, 148, 16),
+                ),
+              ),
               // Row con "Enfermeros Populares" y "Ver más"
               Container(
                 padding: const EdgeInsets.all(12),
@@ -185,7 +192,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(

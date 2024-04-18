@@ -101,19 +101,23 @@ class _MainScreenState extends State<MainScreen> {
                 FlashyTabBarItem(
                   icon: Icon(Icons.home_filled),
                   title: Text('Home'),
-                  activeColor: Colors.black
+                  activeColor: GlobalColors.primaryColor,
+                  inactiveColor: GlobalColors.fifthColor
                 ),
                 FlashyTabBarItem(
                   icon: Icon(Icons.favorite),
                   title: Text('Search'),
+                  activeColor: Colors.black
                 ),
                 FlashyTabBarItem(
                   icon: Icon(Icons.person),
                   title: Text('Highlights'),
+                  activeColor: Colors.black
                 ),
                 FlashyTabBarItem(
                   icon: Icon(Icons.settings),
                   title: Text('Settings'),
+                  activeColor: Colors.black
                 ),
               ],
 ),
