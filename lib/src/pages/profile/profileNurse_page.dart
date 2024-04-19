@@ -7,269 +7,124 @@ class ProfileNursePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final h = MediaQuery.of(context).size.height;
+    Size h = MediaQuery.of(context).size;
     return BackgroundTemplate(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                clipBehavior: Clip.none,
-                alignment: Alignment.centerLeft,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: ClipPath(
-                      child: ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.7),
-                          BlendMode.darken,
-                        ),
-                        child: Image.asset(
-                          'assets/img/enfermera.jpg',
-                          height: h / 3,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 20,
-                    bottom: -35,
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage: AssetImage('assets/img/enfermera.jpg'),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildInfoRow(
-                    'Jazmin Lucas Marmol',
-                    Icons.verified, // Icono de verificación
-                  ),
-                  _buildInfoRow2(
-                    'Santa Anita, Lima',
-                    Icons.location_on_outlined, // Icono de ubicación
-                  ),
-                  _buildInfoRow2(
-                    '+51 986 253 709',
-                    Icons.phone, // Icono de teléfono
-                    price: '\$30/h', // Precio
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  'Descripción',
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
+        child: Scaffold(
+          body: Stack(
+              children: [
+                Image.asset(
+                'assets/img/enfermera.jpg',
+                height: h.height * 0.44,
+                fit: BoxFit.cover,
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  'Me llamo Jazmín Lucas Mármol y, como enfermera comprometida, mi trayectoria se ha forjado en la dedicación al cuidado de la salud. Con una sólida formación y experiencia en el campo, me enorgullece ofrecer atención de calidad a mis pacientes, brindando un toque de compasión que va más allá de la medicina.',
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Container(
+                  child: Column(
+                    children: [
+                      _buildInfoRow('Lucas Jazmin'),
+                      _buildInfoRow2('40', '4', Icons.monetization_on),
+              ]),
+                  
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),      
                 ),
+                
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  'Principales Skills',
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  '1.   Patient care should be the number one priority.',
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  '2.   If you run your practiceyou know how frustrating.',
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  '3.   That’s why some of appointment reminder system.',
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                  'Localización',
-                  style: GoogleFonts.rubik(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              // Añadir imagen centrada
-              Center(
-                child: Image.asset(
-                  'assets/img/map.png',
-                ),
-              ),
-            ],
+               Column(
+                 children: [
+                   //Aqui estaria el icono de retroceso y el icono de verificacion
+                 ],
+               )                
+             ],
+            ),
           ),
-        ),
-      ),
-    );
+  );
+}
+
+  Widget _CardDetail(BuildContext context){
+    return Container(
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                ),
+
+      );
   }
 
-  Widget _buildInfoRow(String text, IconData icon, {String? price}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+  Widget _buildInfoRow(String text) {
+  return SafeArea(
+    child: Container(
+      padding: const EdgeInsets.all(12),
+      alignment: Alignment.topCenter,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+          Text(
+              text,
+              style: GoogleFonts.poppins(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(width: 8),
-              Icon(
-                icon,
-                color: Colors.black, // Color del icono
-              ),
-            ],
-          ),
-          if (price != null)
-            Row(
-              children: [
-                Text(
-                  price,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green, // Color del precio
-                  ),
-                ),
-              ],
+              textAlign: TextAlign.center, // Alinea el texto al centro
             ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 
-  Widget _buildInfoRow2(String text, IconData icon, {String? price}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+  Widget _buildInfoRow2(String text, String text2, IconData icon, {String? price}) {
+    return Container(
+      padding: const EdgeInsets.all(12),
       child: Row(
+        
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(
                 icon,
                 // Color del icono
               ),
-              SizedBox(width: 8),
               Text(
-                text,
-                style: TextStyle(
+                text +'/hr',
+                style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
+                
+              ),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 8), // Añade un pequeño espacio horizontal
+                height: 20,
+                //padding: const EdgeInsets.only(top: 2, bottom: 2),
+                child: const VerticalDivider(
+                  thickness: 2,
+                  color: Colors.black,
                 ),
               ),
+              Text(
+                text2 +'/hr',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                
+              ),),
             ],
           ),
-          if (price != null)
-            Row(
-              children: [
-                Text(
-                  price,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green, // Color del precio
-                  ),
-                ),
-              ],
-            ),
-        ],
-      ),
+        ]),
     );
   }
 }

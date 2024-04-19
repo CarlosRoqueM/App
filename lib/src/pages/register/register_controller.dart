@@ -1,3 +1,4 @@
+import 'package:app/src/providers/users_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,8 @@ class RegisterController extends GetxController {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     String confirmPassword = confirmPasswordController.text.trim();
+
+    UsersProviders usersProviders = UsersProviders();
 
     print('Email ${email}');
     print('password ${password}');
@@ -48,7 +51,6 @@ class RegisterController extends GetxController {
       Get.snackbar('Formulario Inválido', 'Las contraseñas no son iguales');
       return false;
     }
-
     return true;
   }
 }

@@ -45,6 +45,8 @@ dependencies:
   awesome_bottom_bar: ^1.2.4
   curved_navigation_bar: ^1.0.3
   shrink_sidemenu: ^2.0.0+2-null-safety
+  flutter_dotenv: ^5.1.0
+  flashy_tab_bar2: ^0.0.10
 
 dev_dependencies:
   flutter_test:

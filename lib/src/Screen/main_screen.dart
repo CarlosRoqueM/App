@@ -8,6 +8,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
       maxMenuWidth: 280,
       child: BackgroundTemplate(
         child: Scaffold(
-          appBar: AppBar(
+          /*appBar: AppBar(
             //backgroundColor: Colors.transparent,
             backgroundColor: Color.fromRGBO(0, 0, 0, .15),
             elevation: 0.0,
@@ -59,13 +61,13 @@ class _MainScreenState extends State<MainScreen> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
-          ),
+          ),*/
           body: IndexedStack(
             index: selectedIndex,
             children: screens,
           ),
           backgroundColor: Colors.transparent,
-          bottomNavigationBar: CurvedNavigationBar(
+          /*bottomNavigationBar: CurvedNavigationBar(
             backgroundColor: Colors.transparent,
             color: GlobalColors.primaryColor,
             animationDuration: Duration(milliseconds: 300),
@@ -88,7 +90,37 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.white,
               ),
             ],
-          ),
+          ),*/
+          bottomNavigationBar: FlashyTabBar(
+            selectedIndex: selectedIndex,
+            showElevation: true,
+            onItemSelected: (index) => setState(() {
+              selectedIndex = index;
+            }),
+            items: [
+                FlashyTabBarItem(
+                  icon: Icon(Icons.home_filled),
+                  title: Text('Home'),
+                  activeColor: GlobalColors.primaryColor,
+                  inactiveColor: GlobalColors.fifthColor
+                ),
+                FlashyTabBarItem(
+                  icon: Icon(Icons.favorite),
+                  title: Text('Search'),
+                  activeColor: Colors.black
+                ),
+                FlashyTabBarItem(
+                  icon: Icon(Icons.person),
+                  title: Text('Highlights'),
+                  activeColor: Colors.black
+                ),
+                FlashyTabBarItem(
+                  icon: Icon(Icons.settings),
+                  title: Text('Settings'),
+                  activeColor: Colors.black
+                ),
+              ],
+),
         ),
       ),
     );
