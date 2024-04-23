@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController dniController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController lastname1Controller = TextEditingController();
+  TextEditingController lastname2Controller = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+
+
 
   void gotoRegisterPage2() {
     Get.toNamed('/register2');
@@ -15,12 +23,23 @@ class RegisterController extends GetxController {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     String confirmPassword = confirmPasswordController.text.trim();
+    String dni = dniController.text.trim();
+    String name = nameController.text.trim();
+    String lastname1 = lastname1Controller.text.trim();
+    String lastname2 = lastname2Controller.text.trim();
+    String location = locationController.text.trim();
+
 
     UsersProviders usersProviders = UsersProviders();
 
     print('Email ${email}');
     print('password ${password}');
     print('password ${confirmPassword}');
+    print('dni ${dni}');
+    print('name ${name}');
+    print('lastname1 ${lastname1}');
+    print('lastname2 ${lastname2}');
+    print('location ${location}');
 
     if (isValidform(email, password, confirmPassword)) {
       Get.snackbar('Formulario Válido', 'Listo para Ingresar');
