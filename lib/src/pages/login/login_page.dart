@@ -20,35 +20,43 @@ class LoginPage extends StatelessWidget {
         child: Scaffold(
       backgroundColor: Colors.transparent,
       bottomNavigationBar: Container(
+          padding: const EdgeInsets.all(8),
           height: 70,
           child: Column(
             children: [_textdontAccount()],
           )),
-      body: Center(
-        child: SingleChildScrollView(
-          reverse: true,
-          padding: EdgeInsets.all(32),
+      body: Container(
+          padding: const EdgeInsets.all(8),
           child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                children: [
+                  _bottomBack(),
                   _tittle(),
                   _subtittle(),
-                  _googleButton(),
+                  //_googleButton(),
                   _email(),
                   _password(),
                   _loginbutton(),
                   _textforPassword()
                 ],
-              )
-            ],
+            )
           ),
         ),
-      ),
-    ));
+      );
   }
 
   //Widgets_privados
+
+  Widget _bottomBack() {
+    return SafeArea(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+          IconButton(
+              onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios)),
+        ]),
+    );
+  }
 
   Widget _textdontAccount() {
     return Row(
@@ -57,17 +65,17 @@ class LoginPage extends StatelessWidget {
       children: [
         Text(
           'No tienes una cuenta?',
-          style: TextStyle(
+          style: GoogleFonts.poppins(
               color: GlobalColors.primaryColor,
               fontSize: 16,
               fontWeight: FontWeight.normal),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         GestureDetector(
           onTap: () => cont.gotoRegisterPage(),
           child: Text(
             'Registrate',
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: GlobalColors.secondColor,
                 fontSize: 16,
                 fontWeight: FontWeight.bold),
@@ -78,15 +86,14 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _textforPassword() {
-    return SafeArea(
-      child: Container(
-        margin: EdgeInsets.only(top: 5),
+    return Container(
+        padding: const EdgeInsets.all(8),
         alignment: Alignment.center,
         child: Column(
           children: [
             Text(
-              'Olvidaste tu contraseña',
-              style: GoogleFonts.rubik(
+              'Olvidaste tu contraseña?',
+              style: GoogleFonts.poppins(
                   color: GlobalColors.primaryColor,
                   fontSize: 15,
                   fontWeight: FontWeight.w500),
@@ -94,46 +101,42 @@ class LoginPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 
   Widget _tittle() {
-    return SafeArea(
-      child: Container(
-        margin: const EdgeInsets.only(top: 10),
-        alignment: Alignment.center,
+    return Container(
+        padding: const EdgeInsets.all(8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Bienvenido',
-              style: GoogleFonts.rubik(
+              style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 30,
                   fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
+              
             ),
           ],
         ),
-      ),
     );
   }
 
   Widget _subtittle() {
     return Container(
-      margin: const EdgeInsets.all(20), // Puedes comentar o eliminar esta línea
+      padding: const EdgeInsets.all(8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Puedes buscar enfermeros y solicitar sus servicios de enfermería.',
-            style: GoogleFonts.rubik(
+            style: GoogleFonts.poppins(
               color: Color.fromRGBO(103, 114, 148, 100),
               fontSize: 15,
               fontWeight: FontWeight.normal,
             ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
@@ -176,81 +179,60 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _email() {
+  Widget _customTextField({required TextEditingController controller, required String labelText, TextInputType keyboardType = TextInputType.text, bool obscureText = false}) {
     return Container(
-      margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: Color.fromRGBO(103, 114, 148, 16),
+      padding: const EdgeInsets.all(8),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color.fromRGBO(240, 240, 240, 1),
+          borderRadius: BorderRadius.circular(12),
         ),
-        /*boxShadow: [
-           / BoxShadow(
-                color: Color.fromRGBO(103, 114, 148, 16),
-                blurRadius: 1,
-                offset: Offset(0, 2))
-          ]*/
-      ),
-      child: TextFormField(
-        controller: cont.emailController,
-        keyboardType: TextInputType.emailAddress,
-        decoration: const InputDecoration(
-            hintText: 'Ingresar Email',
+        child: TextFormField(
+          controller: controller,
+          keyboardType: keyboardType,
+          obscureText: obscureText,
+          cursorColor: GlobalColors.primaryColor,
+          decoration: InputDecoration(
+            labelText: labelText,
             border: InputBorder.none,
-            contentPadding: EdgeInsets.all(18),
-            prefixIcon: Icon(
-              Icons.email,
-              color: Color.fromRGBO(103, 114, 148, 16),
+            contentPadding: const EdgeInsets.all(10),
+            labelStyle: const TextStyle(
+              color: Color.fromRGBO(2, 81, 89, 1),
             ),
-            hintStyle: TextStyle(
-              height: 1,
-              color: Color.fromRGBO(103, 114, 148, 16),
-            )),
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget _email() {
+    return _customTextField(
+      controller: cont.emailController,
+      labelText: 'Email',
+      keyboardType: TextInputType.emailAddress,
     );
   }
 
   Widget _password() {
-    return Container(
-      margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Color.fromRGBO(103, 114, 148, 16)),
-      ),
-      child: TextFormField(
-        controller: cont.passwordController,
-        obscureText: true,
-        keyboardType: TextInputType.visiblePassword,
-        decoration: const InputDecoration(
-            hintText: 'Ingresar Contraseña',
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.all(18),
-            prefixIcon: Icon(
-              Icons.lock,
-              color: Color.fromRGBO(103, 114, 148, 16),
-            ),
-            hintStyle: TextStyle(
-              height: 1,
-            )),
-      ),
+    return _customTextField(
+      controller: cont.passwordController,
+      labelText: 'Contraseña',
+      obscureText: true,
     );
   }
 
+
   Widget _loginbutton() {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-      //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       backgroundColor: GlobalColors.primaryColor,
-      minimumSize: Size(88, 36),
-      padding: EdgeInsets.symmetric(horizontal: 120, vertical: 18),
+      minimumSize: const Size(88, 36),
+      padding: const EdgeInsets.symmetric(horizontal: 145, vertical: 18),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
     return Container(
-      margin: const EdgeInsets.only(
-          top: 20), // Puedes comentar o eliminar esta línea
+      padding: const EdgeInsets.all(8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -258,12 +240,12 @@ class LoginPage extends StatelessWidget {
           ElevatedButton(
               style: raisedButtonStyle,
               //onPressed: () => cont.login(), (para cuandose obtenga la coneccion )
-              onPressed: () {
-                Get.to(MainScreen());
+              onPressed: () => {
+                cont.login(),
               },
               child: Text(
                 'Ingresar',
-                style: GoogleFonts.rubik(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,

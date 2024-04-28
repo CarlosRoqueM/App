@@ -1,4 +1,5 @@
 
+import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/splash/splashRegister_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
@@ -7,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage2 extends StatelessWidget {
-  const RegisterPage2({super.key});
+  RegisterController cont = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class RegisterPage2 extends StatelessWidget {
     return BackgroundTemplate(
         child: Scaffold(
       backgroundColor: Colors.transparent,
-      //resizeToAvoidBottomInset: false, 
+      resizeToAvoidBottomInset: false, 
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(8),
           height: 95,
@@ -28,14 +29,6 @@ class RegisterPage2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _bottomBack(),
-              /*Row(
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _dni(),
-                 // _findButton()
-                ],
-              ),*/
               Column(
                 children: [
                   _dni(),
@@ -43,6 +36,7 @@ class RegisterPage2 extends StatelessWidget {
                   _apellidoPaterno(),
                   _apellidoMaterno(),
                   _location(),
+                  _phone()
                 ],
               )
             ],
@@ -52,7 +46,7 @@ class RegisterPage2 extends StatelessWidget {
   );
   }
 
-  //Widgets_privados
+//Widgets_privados
 
   Widget _bottomBack() {
     return SafeArea(
@@ -70,168 +64,83 @@ class RegisterPage2 extends StatelessWidget {
     );
   }
 
-  Widget _dni() {
+  Widget _customTextField({required TextEditingController controller, required String labelText, TextInputType keyboardType = TextInputType.text}) {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Container(
-        //width: 250, // Ajusta el ancho del contenedor según sea necesario
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color.fromRGBO(240, 240, 240, 1),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: const Color.fromRGBO(103, 114, 148, 16),
-          ),
-          /*boxShadow: [
-             / BoxShadow(
-                  color: Color.fromRGBO(103, 114, 148, 16),
-                  blurRadius: 1,
-                  offset: Offset(0, 2))
-            ]*/
         ),
         child: TextFormField(
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-              hintText: 'DNI',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.person,
-                color: Color.fromRGBO(103, 114, 148, 16),
-              ),
-              hintStyle: TextStyle(
-                height: 1,
-                color: Color.fromRGBO(103, 114, 148, 16),
-              )),
+          controller: controller,
+          keyboardType: keyboardType,
+          cursorColor: GlobalColors.primaryColor,
+          decoration: InputDecoration(
+            labelText: labelText,
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.all(10),
+            labelStyle: const TextStyle(
+              color: Color.fromRGBO(2, 81, 89, 1),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  Widget _nombre() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        
-        //margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: const Color.fromRGBO(103, 114, 148, 16),
-          ),
-          /*boxShadow: [
-             / BoxShadow(
-                  color: Color.fromRGBO(103, 114, 148, 16),
-                  blurRadius: 1,
-                  offset: Offset(0, 2))
-            ]*/
-        ),
-        child: TextFormField(
-          keyboardType: TextInputType.name,
-          decoration: const InputDecoration(
-              hintText: 'Nombres',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.person,
-                color: Color.fromRGBO(103, 114, 148, 16),
-              ),
-              hintStyle: TextStyle(
-                height: 1,
-                color: Color.fromRGBO(103, 114, 148, 16),
-              )),
-        ),
-      ),
-    );
+  Widget _dni(){
+    return _customTextField(
+      controller: cont.dniController, 
+      labelText: 'DNI',
+      keyboardType: TextInputType.number,
+      );
+  }
+
+  Widget _nombre(){
+    return _customTextField(
+      controller: cont.nameController, 
+      labelText: 'Nombres',
+      keyboardType: TextInputType.name,
+      );
+  }
+  
+
+  Widget _phone() {
+    return _customTextField(
+      controller: cont.phoneController, 
+      labelText: 'Celular',
+      keyboardType: TextInputType.number,
+      );
   }
 
   Widget _apellidoPaterno() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        //margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color.fromRGBO(103, 114, 148, 16)),
-        ),
-        child: TextFormField(
-          keyboardType: TextInputType.visiblePassword,
-          decoration: const InputDecoration(
-              hintText: 'Apellido Paterno',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.person_4,
-                color: Color.fromRGBO(103, 114, 148, 16),
-              ),
-              hintStyle: TextStyle(
-                height: 1,
-              )),
-        ),
-      ),
-    );
+    return _customTextField(
+      controller: cont.lastname1Controller, 
+      labelText: 'Apellido Paterno',
+      keyboardType: TextInputType.name,
+      );
   }
 
   Widget _apellidoMaterno() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        //margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color.fromRGBO(103, 114, 148, 16)),
-        ),
-        child: TextFormField(
-          keyboardType: TextInputType.visiblePassword,
-          decoration: const InputDecoration(
-              hintText: 'Apellido Materno',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.person_2_rounded,
-                color: Color.fromRGBO(103, 114, 148, 16),
-              ),
-              hintStyle: TextStyle(
-                height: 1,
-              )),
-        ),
-      ),
-    );
+    return _customTextField(
+      controller: cont.lastname2Controller, 
+      labelText: 'Apellido Materno',
+      keyboardType: TextInputType.name,
+      );
   }
 
   Widget _location() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        //margin: const EdgeInsets.only(top: 20, right: 7, left: 7),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color.fromRGBO(103, 114, 148, 16)),
-        ),
-        child: TextFormField(
-          keyboardType: TextInputType.visiblePassword,
-          decoration: const InputDecoration(
-              hintText: 'Ubicación',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.location_on,
-                color: Color.fromRGBO(103, 114, 148, 16),
-              ),
-              hintStyle: TextStyle(
-                height: 1,
-              )),
-        ),
-      ),
-    );
+    return _customTextField(
+      controller: cont.locationController, 
+      labelText: 'Ubicación',
+      keyboardType: TextInputType.streetAddress,
+      );
   }
+
 
   Widget _nextButton() {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-      //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       backgroundColor: GlobalColors.primaryColor,
       padding: const EdgeInsets.symmetric(horizontal: 140, vertical: 18),
       shape: const RoundedRectangleBorder(
@@ -243,10 +152,8 @@ class RegisterPage2 extends StatelessWidget {
         children: [
           ElevatedButton(
               style: raisedButtonStyle,
-              //colocar esto despues de ubicar todo
-              //onPressed: () => cont.register(),
               onPressed: () {
-                Get.to(const SplashRegisterPage());
+                cont.finishRegistration();
               },
               child: Text(
                 'Aceptar',

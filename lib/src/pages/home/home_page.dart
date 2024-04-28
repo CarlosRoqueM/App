@@ -1,3 +1,4 @@
+import 'package:app/src/pages/home/home_controller.dart';
 import 'package:app/src/pages/login/login_page.dart';
 import 'package:app/src/pages/profile/profileNurse_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
@@ -10,6 +11,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
+  //HomeController cont = Get.put(HomeController());
   const HomePage({Key? key}) : super(key: key);
 
   @override

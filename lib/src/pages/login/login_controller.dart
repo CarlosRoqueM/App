@@ -1,15 +1,20 @@
+import 'package:app/src/models/response_api.dart';
+import 'package:app/src/providers/users_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  UsersProviders usersProviders = UsersProviders();
+
   void gotoRegisterPage() {
     Get.toNamed('/register');
   }
 
-  void login() {
+  void login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
@@ -17,9 +22,23 @@ class LoginController extends GetxController {
     print('password ${password}');
 
     if (isValidform(email, password)) {
-      Get.snackbar('Formulario Válido', 'Listo para Ingresar');
+
+      ResponseApi responseApi = await usersProviders.login(email, password);
+
+      print('Response Api: ${responseApi.toJson()}');
+
+      if (responseApi.success == true) {
+        GetStorage().write('user', responseApi.data);
+        goToHomePage();
+      } else {
+        Get.snackbar('Error', responseApi.message ?? '');
+      }
     }
   }
+
+  void goToHomePage() {
+    Get.offAllNamed('/main');
+  } 
 
   bool isValidform(String email, String password) {
     if (email.isEmpty) {
