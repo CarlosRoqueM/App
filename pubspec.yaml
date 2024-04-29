@@ -47,6 +47,7 @@ dependencies:
   shrink_sidemenu: ^2.0.0+2-null-safety
   flutter_dotenv: ^5.1.0
   flashy_tab_bar2: ^0.0.10
+  image_picker: ^1.1.0
 
 dev_dependencies:
   flutter_test:
