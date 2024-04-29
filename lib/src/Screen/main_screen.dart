@@ -25,9 +25,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final screens = [
-      const HomePage(),
-      const FavoritePage(),
-      const ProfilePage()
+      HomePage(),
+      FavoritePage(),
+      ProfilePage()
     ];
 
     return SideMenu(

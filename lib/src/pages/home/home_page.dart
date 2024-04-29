@@ -11,8 +11,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
-  //HomeController cont = Get.put(HomeController());
-  const HomePage({Key? key}) : super(key: key);
+  HomeController cont = Get.put(HomeController());
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +52,17 @@ class HomePage extends StatelessWidget {
                             ),
                           ]
                         ),
-                        const CircleAvatar(
-                              radius: 40,
-                              backgroundImage: AssetImage('assets/img/profile2.jpg'),
-                            ),
+                        //De momento este icono esta haciendo como boton de cerrar sesion.
+                        GestureDetector(
+                          onTap: () {
+                            cont.logout();
+                          },
+                          child: const CircleAvatar(
+                                radius: 40,
+                                backgroundImage: AssetImage('assets/img/profile2.jpg'),
+                              ),
+                        ),
+                            
                           ],
                         ),
                           const SizedBox(
@@ -67,6 +74,7 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: TextFormField(
+                            autofocus: false,
                             keyboardType: TextInputType.name,
                             decoration: const InputDecoration(
                               hintText: 'Buscar ....',

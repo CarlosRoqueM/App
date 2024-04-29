@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/src/pages/login/login_page.dart';
 import 'package:app/src/pages/onboarding/onboarding_page.dart';
+import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,8 @@ import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashRegisterPage extends StatefulWidget {
-  const SplashRegisterPage({super.key});
+  RegisterController cont = Get.put(RegisterController());
+  SplashRegisterPage({super.key});
 
   @override
   State<SplashRegisterPage> createState() => _SplashRegisterPageState();
@@ -19,7 +21,7 @@ class _SplashRegisterPageState extends State<SplashRegisterPage> {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 4), () {
-      Get.to(LoginPage());
+      
     });
     return BackgroundTemplate(
       child: Scaffold(

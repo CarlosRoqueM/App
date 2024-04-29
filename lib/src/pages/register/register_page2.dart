@@ -1,6 +1,6 @@
 
 import 'package:app/src/pages/register/register_controller.dart';
-import 'package:app/src/pages/splash/splashRegister_page.dart';
+import 'package:app/src/pages/register/splashRegister_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +9,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage2 extends StatelessWidget {
   RegisterController cont = Get.put(RegisterController());
+  
 
   @override
   Widget build(BuildContext context) {
+    Size h = MediaQuery.of(context).size;
     //final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
     return BackgroundTemplate(
         child: Scaffold(
@@ -19,9 +21,9 @@ class RegisterPage2 extends StatelessWidget {
       resizeToAvoidBottomInset: false, 
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(8),
-          height: 95,
+          height: 80,
           child: Column(
-            children: [_nextButton()],
+            children: [_nextButton(context)],
           )),
       body: Container(
         padding: const EdgeInsets.all(8),
@@ -31,6 +33,8 @@ class RegisterPage2 extends StatelessWidget {
               _bottomBack(),
               Column(
                 children: [
+                  
+                  _imageUser(context),
                   _dni(),
                   _nombre(),
                   _apellidoPaterno(),
@@ -61,6 +65,30 @@ class RegisterPage2 extends StatelessWidget {
           textAlign: TextAlign.right,
         ),
       ]),
+    );
+  }
+
+  Widget _imageUser(BuildContext context){
+    
+    return Container(
+      
+      padding: const EdgeInsets.all(8),
+      child: GestureDetector(
+        
+        onTap: () {
+          cont.showAlertdialog(context);
+        },
+        child: GetBuilder<RegisterController>(
+          
+          builder: (value) => CircleAvatar(
+          backgroundImage: 
+          cont.imageFile != null ? FileImage(cont.imageFile!) :
+          AssetImage('assets/img/perfil2.png') as ImageProvider,
+          radius: 70,
+          backgroundColor: GlobalColors.primaryColor,
+        ),
+        ),
+      )
     );
   }
 
@@ -139,7 +167,7 @@ class RegisterPage2 extends StatelessWidget {
   }
 
 
-  Widget _nextButton() {
+  Widget _nextButton(BuildContext context) {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       backgroundColor: GlobalColors.primaryColor,
       padding: const EdgeInsets.symmetric(horizontal: 140, vertical: 18),
@@ -153,7 +181,7 @@ class RegisterPage2 extends StatelessWidget {
           ElevatedButton(
               style: raisedButtonStyle,
               onPressed: () {
-                cont.finishRegistration();
+                cont.finishRegistration(context);
               },
               child: Text(
                 'Aceptar',

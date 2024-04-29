@@ -3,7 +3,7 @@ import 'package:app/src/Screen/main_screen.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/Onboarding/onboarding_page.dart';
 import 'package:app/src/pages/home/home_page.dart';
-import 'package:app/src/pages/splash/splashRegister_page.dart';
+import 'package:app/src/pages/register/splashRegister_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:app/src/pages/login/login_page.dart';
 import 'package:app/src/pages/onboarding/onboarding_page2.dart';
