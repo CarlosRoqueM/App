@@ -2,6 +2,7 @@ import 'package:app/src/Screen/side_menu_list.dart';
 import 'package:app/src/pages/favorite/favorite_page.dart';
 import 'package:app/src/pages/home/home_page.dart';
 import 'package:app/src/pages/profile/profile_page.dart';
+import 'package:app/src/pages/settings/settings_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -27,7 +28,8 @@ class _MainScreenState extends State<MainScreen> {
     final screens = [
       HomePage(),
       FavoritePage(),
-      ProfilePage()
+      ProfilePage(),
+      SettingsPage(),
     ];
 
     return SideMenu(
@@ -98,29 +100,25 @@ class _MainScreenState extends State<MainScreen> {
               selectedIndex = index;
             }),
             items: [
-                FlashyTabBarItem(
+              FlashyTabBarItem(
                   icon: Icon(Icons.home_filled),
                   title: Text('Home'),
                   activeColor: GlobalColors.primaryColor,
-                  inactiveColor: GlobalColors.fifthColor
-                ),
-                FlashyTabBarItem(
+                  inactiveColor: GlobalColors.fifthColor),
+              FlashyTabBarItem(
                   icon: Icon(Icons.favorite),
                   title: Text('Search'),
-                  activeColor: Colors.black
-                ),
-                FlashyTabBarItem(
+                  activeColor: Colors.black),
+              FlashyTabBarItem(
                   icon: Icon(Icons.person),
                   title: Text('Highlights'),
-                  activeColor: Colors.black
-                ),
-                FlashyTabBarItem(
+                  activeColor: Colors.black),
+              FlashyTabBarItem(
                   icon: Icon(Icons.settings),
                   title: Text('Settings'),
-                  activeColor: Colors.black
-                ),
-              ],
-),
+                  activeColor: Colors.black),
+            ],
+          ),
         ),
       ),
     );
