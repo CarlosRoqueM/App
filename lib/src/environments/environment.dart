@@ -2,6 +2,6 @@
 // static const String API_URL = String.fromEnvironment('URL_IP', defaultValue: 'http://localhost:3000');
 
 class Environment {
-  static const String API_URL = "http://192.168.18.2:3000/";
-  static const String API_URL_OLD = "10.200.174.255:3000";
+  static const String API_URL = "http://192.168.1.8:3000/";
+  static const String API_URL_OLD = "192.168.1.8:3000";
 }

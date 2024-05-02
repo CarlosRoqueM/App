@@ -1,9 +1,57 @@
+import 'dart:io';
+
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
-class DetailedProfilePage extends StatelessWidget {
+class DetailedProfilePage extends StatefulWidget {
+  @override
+  _DetailedProfilePageState createState() => _DetailedProfilePageState();
+}
+
+class _DetailedProfilePageState extends State<DetailedProfilePage> {
+  final ImagePicker picker = ImagePicker();
+  File? imageFile;
+
+  Future selectImage(ImageSource imageSource) async {
+    XFile? image = await picker.pickImage(source: imageSource);
+
+    if (image != null) {
+      setState(() {
+        imageFile = File(image.path);
+      });
+    }
+  }
+
+  void showAlertdialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Selecciona una opción'),
+          actions: [
+            TextButton(
+              child: Text('Cámara'),
+              onPressed: () {
+                selectImage(ImageSource.camera);
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Galería'),
+              onPressed: () {
+                selectImage(ImageSource.gallery);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
@@ -70,9 +118,11 @@ class DetailedProfilePage extends StatelessWidget {
                       Stack(
                         children: [
                           CircleAvatar(
-                            radius: 75, // El radio del avatar circular
-                            backgroundImage: AssetImage(
-                                "assets/img/profile2.jpg"), // Asegúrate de que esta imagen esté en tu carpeta de assets
+                            radius: 75,
+                            backgroundImage: imageFile != null
+                                ? FileImage(imageFile!)
+                                : AssetImage("assets/img/profile2.jpg")
+                                    as ImageProvider<Object>,
                           ),
                           Positioned(
                             bottom: 0,
@@ -83,7 +133,7 @@ class DetailedProfilePage extends StatelessWidget {
                               child: IconButton(
                                 icon: Icon(Icons.edit, color: Colors.black),
                                 onPressed: () {
-                                  // Aquí puedes manejar la lógica para editar la imagen
+                                  showAlertdialog(context);
                                 },
                               ),
                             ),
