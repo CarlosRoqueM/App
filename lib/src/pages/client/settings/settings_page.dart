@@ -1,15 +1,21 @@
-import 'package:app/src/pages/profile/detailedProfilePage.dart';
+
+import 'package:app/src/pages/client/home/home_controller.dart';
+import 'package:app/src/pages/client/profile/info/profilePage.dart';
+import 'package:app/src/pages/client/settings/settings_page_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:app/src/widgets/backgroundTemplate.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  //const SettingsPage({Key? key}) : super(key: key);
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  SettingsController contSettings = Get.put(SettingsController());
+  HomeController contHome = Get.put(HomeController());
   bool _isCallEnabled = false;
   bool _isMessageEnabled = false;
 
@@ -18,7 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return BackgroundTemplate(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Stack(
+        body: Obx(() =>   Stack(
           children: [
             Stack(
               children: [
@@ -68,23 +74,23 @@ class _SettingsPageState extends State<SettingsPage> {
                           leading: CircleAvatar(
                               radius: 30,
                               backgroundImage:
-                                  AssetImage('assets/img/profile2.jpg')),
+                                  NetworkImage(contSettings.user.value.image ?? '')),
                           title: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Mario Santisteban',
+                              children: contSettings.user.value.roles != null && contSettings.user.value.roles!.isNotEmpty ? [
+                                Text('${contSettings.user.value.name ?? 'Nombre'} ${contSettings.user.value.lastname1 ?? 'Apellido'}',
                                     style: GoogleFonts.poppins(fontSize: 18)),
-                                Text('Paciente',
+                                Text(contSettings.user.value.roles!.first.name ?? 'no role',
                                     style: GoogleFonts.poppins(
                                         fontSize: 14, color: Colors.grey))
-                              ]),
+                              ] : []),
                           trailing: IconButton(
                               icon: Icon(Icons.arrow_forward_ios, size: 20),
                               onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          DetailedProfilePage()))),
+                                          profilePage()))),
                         ),
                         SizedBox(height: 20), // Agrega un espacio de 20 píxeles
                         Padding(
@@ -217,8 +223,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   color: Colors.grey[600]),
                             ),
                             onTap: () {
-                              Navigator.of(context)
-                                  .pushReplacementNamed('/login');
+                              contHome.logout();
                             },
                           ),
                         ),
@@ -229,7 +234,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
           ],
-        ),
+        )),
       ),
     );
   }

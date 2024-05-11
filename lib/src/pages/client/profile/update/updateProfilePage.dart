@@ -1,4 +1,5 @@
 
+import 'package:app/src/pages/client/profile/update/updateProfile_Controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/register/splashRegister_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
@@ -7,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterPage2 extends StatelessWidget {
-  RegisterController cont = Get.put(RegisterController());
+class updateProfilePage extends StatelessWidget {
+  updateProfilePageController cont = Get.put(updateProfilePageController());
   
 
   @override
@@ -34,12 +35,7 @@ class RegisterPage2 extends StatelessWidget {
                 _bottomBack(),
                 Column(
                   children: [
-                    
                     _imageUser(context),
-                    _dni(),
-                    _nombre(),
-                    _apellidoPaterno(),
-                    _apellidoMaterno(),
                     _location(),
                     _phone()
                   ],
@@ -61,7 +57,7 @@ class RegisterPage2 extends StatelessWidget {
         IconButton(
             onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios)),
         Text(
-          'Detalle sus Datos Personales',
+          'Actualiza tu perfil',
           style: GoogleFonts.poppins(
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
           textAlign: TextAlign.right,
@@ -71,22 +67,21 @@ class RegisterPage2 extends StatelessWidget {
   }
 
   Widget _imageUser(BuildContext context){
-    
+    Size h = MediaQuery.of(context).size;
     return Container(
       
       padding: const EdgeInsets.all(8),
       child: GestureDetector(
-        
         onTap: () {
           cont.showAlertdialog(context);
         },
-        child: GetBuilder<RegisterController>(
-          
+        child: GetBuilder<updateProfilePageController>(
           builder: (value) => CircleAvatar(
           backgroundImage: 
           cont.imageFile != null ? FileImage(cont.imageFile!) :
+          cont.user.image != null ? NetworkImage(cont.user.image!) :
           AssetImage('assets/img/perfil2.png') as ImageProvider,
-          radius: 70,
+          radius: h.height * 0.12,
           backgroundColor: GlobalColors.primaryColor,
         ),
         ),
@@ -143,45 +138,12 @@ class RegisterPage2 extends StatelessWidget {
       ),
     );
   }
-
-  Widget _dni(){
-    return _customTextField(
-      controller: cont.dniController, 
-      labelText: 'DNI',
-      keyboardType: TextInputType.number,
-      );
-  }
-
-  Widget _nombre(){
-    return _customTextField(
-      controller: cont.nameController, 
-      labelText: 'Nombres',
-      keyboardType: TextInputType.name,
-      );
-  }
   
-
   Widget _phone() {
     return _customTextField2(
       controller: cont.phoneController, 
       labelText: 'Celular',
       keyboardType: TextInputType.number,
-      );
-  }
-
-  Widget _apellidoPaterno() {
-    return _customTextField(
-      controller: cont.lastname1Controller, 
-      labelText: 'Apellido Paterno',
-      keyboardType: TextInputType.name,
-      );
-  }
-
-  Widget _apellidoMaterno() {
-    return _customTextField(
-      controller: cont.lastname2Controller, 
-      labelText: 'Apellido Materno',
-      keyboardType: TextInputType.name,
       );
   }
 
@@ -211,7 +173,7 @@ class RegisterPage2 extends StatelessWidget {
             ElevatedButton(
                 style: raisedButtonStyle,
                 onPressed: () {
-                  cont.finishRegistration(context);
+                  cont.updateInfo(context);
                 },
                 child: Container(
                   width: constraints.maxWidth * 1,

@@ -18,7 +18,7 @@ class RegisterPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         bottomNavigationBar: Container(
           padding: const EdgeInsets.all(8),
-            height: 110,
+            height: 90,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [_nextButton()],
@@ -37,7 +37,7 @@ class RegisterPage extends StatelessWidget {
                     _email(),
                     _password(),
                     _confiPassword(),
-                    _termsAndConditions(),
+                    _termsAndConditions()
                   ],
                 )
             ),
@@ -221,31 +221,38 @@ class RegisterPage extends StatelessWidget {
       //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       backgroundColor: GlobalColors.primaryColor,
       minimumSize: const Size(88, 36),
-      padding: const EdgeInsets.symmetric(horizontal: 140, vertical: 18),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ElevatedButton(
-              style: raisedButtonStyle,
-              onPressed: () {
-                cont.gotoRegisterPage2();
-              },
-              child: Text(
-                'Siguiente',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400,
-                ),
-                textAlign: TextAlign.center,
-              ))
-        ],
-      ),
-    );
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+      return Container(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                style: raisedButtonStyle,
+                onPressed: () {
+                  cont.gotoRegisterPage2();
+                },
+                child: Container(
+                  width: constraints.maxWidth * 1,
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    'Siguiente',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ))
+          ],
+        ),
+      );
+  });
   }
 }

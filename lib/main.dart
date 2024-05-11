@@ -1,9 +1,15 @@
 //import 'package:app/src/pages/login/login_page.dart';
-import 'package:app/src/Screen/main_screen.dart';
+
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/Onboarding/onboarding_page.dart';
-import 'package:app/src/pages/home/home_page.dart';
+import 'package:app/src/pages/client/Search/searchPage.dart';
+import 'package:app/src/pages/client/enfermeros/clientMainPage.dart';
+import 'package:app/src/pages/client/profile/info/profilePage.dart';
+import 'package:app/src/pages/client/profile/update/updateProfilePage.dart';
+import 'package:app/src/pages/client/home/home_page.dart';
 import 'package:app/src/pages/register/splashRegister_page.dart';
+import 'package:app/src/pages/client/settings/settings_page.dart';
+import 'package:app/src/pages/client/settings/settings_page_controller.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:app/src/pages/login/login_page.dart';
 import 'package:app/src/pages/onboarding/onboarding_page2.dart';
@@ -43,17 +49,25 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: userSession.id != null ? '/main' : '/',
       getPages: [
+        /*------------- General Page --------------------*/
         GetPage(name: '/', page: () =>  SplashPage()),
         GetPage(name: '/On1', page: () => OnboardingPage()),
         GetPage(name: '/On2', page: () => OnboardingPage2()),
         GetPage(name: '/On3', page: () => OnboardingPage3()),
         GetPage(name: '/login', page: () => LoginPage()),
-        GetPage(name: '/home', page: () => HomePage()),
-        GetPage(name: '/main', page: () => MainScreen()),
         GetPage(name: '/register', page: () => RegisterPage()),
         GetPage(name: '/register2', page: () =>  RegisterPage2()),
         GetPage(name: '/splashRegister', page: () =>  SplashRegisterPage()),
-      ],
+
+        /*------------- Client Page --------------------*/
+        GetPage(name: '/main', page: () => ClientMainPage()),
+        GetPage(name: '/client/home', page: () => HomePage()),
+        GetPage(name: '/client/profile/info', page: () => profilePage()),
+        GetPage(name: '/client/profile/update', page: () => updateProfilePage()),
+        GetPage(name: '/client/settings', page: () =>  SettingsPage()),
+        GetPage(name: '/client/home', page: () => HomePage()),
+         GetPage(name: '/client/search', page: () => SearchPage()),
+      ], 
       navigatorKey: Get.key,
     );
   }
