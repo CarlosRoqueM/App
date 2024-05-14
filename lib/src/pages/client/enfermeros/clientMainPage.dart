@@ -1,4 +1,5 @@
 
+import 'package:app/src/pages/client/Search/searchPage.dart';
 import 'package:app/src/pages/client/enfermeros/clientMain_controller.dart';
 import 'package:app/src/pages/client/home/home_page.dart';
 import 'package:app/src/pages/client/profile/info/profilePage.dart';
@@ -22,7 +23,7 @@ class ClientMainPage extends StatelessWidget {
         children: [
           HomePage(),
           FavoritePage(),
-          profilePage(),
+          SearchPage(),
           SettingsPage(),
         ],
       ))
@@ -44,8 +45,8 @@ class ClientMainPage extends StatelessWidget {
                   title: Text('Mapa'),
                   activeColor: Colors.black),
               FlashyTabBarItem(
-                  icon: Icon(Icons.favorite),
-                  title: Text('Favoritos'),
+                  icon: Icon(Icons.search),
+                  title: Text('Busqueda'),
                   activeColor: Colors.black),
               FlashyTabBarItem(
                   icon: Icon(Icons.settings),

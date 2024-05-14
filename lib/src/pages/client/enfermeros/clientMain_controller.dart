@@ -11,5 +11,8 @@ class ClientMainController extends GetxController {
     indexTap.value = index;
   }
 
+  void setIndexToTwo() {
+    indexTap.value = 2;
+  }
 
 }

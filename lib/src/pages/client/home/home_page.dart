@@ -1,8 +1,9 @@
 import 'package:app/src/models/rol.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/client/Search/searchPage.dart';
+import 'package:app/src/pages/client/enfermeros/clientMain_controller.dart';
 import 'package:app/src/pages/client/home/home_controller.dart';
-import 'package:app/src/pages/profile/profileNurse_page.dart';
+import 'package:app/src/pages/client/enfermeros/detail/profileNurse_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class HomePage extends StatelessWidget {
+  ClientMainController contMain = Get.put(ClientMainController());
   HomeController cont = Get.put(HomeController());
   //HomePage({Key? key}) : super(key: key);
 
@@ -73,7 +75,7 @@ class HomePage extends StatelessWidget {
                               child: GestureDetector(
                                 onTap: () => {
                                   // Implementa la lógica para buscar aquí
-                                  cont.goToSearchPage(),
+                                  contMain.setIndexToTwo(),
                                 },
                                 child: TextFormField(
                                   autofocus: false,
@@ -114,6 +116,7 @@ class HomePage extends StatelessWidget {
                           GestureDetector(
                               onTap: () {
                                 // Implementa la lógica para ver más aquí
+                                contMain.setIndexToTwo();
                               },
                                 child: Text(
                                   'Ver más',
@@ -129,7 +132,7 @@ class HomePage extends StatelessWidget {
                       ),
                 ),
                 // Lista de tarjetas horizontales
-                Container(
+                Obx(() => Container(
                   padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -140,7 +143,7 @@ class HomePage extends StatelessWidget {
                           // Tarjetas "Enfermeros Populares"
                           return Obx(() =>  GestureDetector(
                             onTap: () {
-                              Get.to(ProfileNursePage());
+                              cont.openBottomShead(context, cont.nurses[index]);
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 15),
@@ -190,7 +193,7 @@ class HomePage extends StatelessWidget {
                                               decoration: BoxDecoration(
                                                 
                                                 borderRadius: BorderRadius.circular(5), // Ajusta el valor según lo redondeado que desees
-                                                color: Colors.black,
+                                                color: Color.fromRGBO(43, 43, 43, 1),
                                               ),
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,7 +212,7 @@ class HomePage extends StatelessWidget {
                                                     style: GoogleFonts.poppins(
                                                       fontSize: 12,
                                                       fontWeight: FontWeight.normal,
-                                                      color: const Color.fromRGBO(252, 252, 252, 1), // Color del texto
+                                                      color: Color.fromRGBO(252, 252, 252, 1), // Color del texto
                                                     ),
                                                   ),
                                                 ],
@@ -226,7 +229,7 @@ class HomePage extends StatelessWidget {
                         }).toList(),
                       ),
                     ),
-                  ),
+                  )),
                   Container(
                     padding: const EdgeInsets.only(right: 12, left: 12),
                     child: const Divider(
@@ -251,6 +254,7 @@ class HomePage extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             // Implementa la lógica para ver más aquí
+                            contMain.setIndexToTwo();
                           },
                           child: Text(
                             'Ver más',
@@ -276,7 +280,7 @@ class HomePage extends StatelessWidget {
                           // Tarjetas "Enfermeros Populares"
                           return Obx(() =>  GestureDetector(
                             onTap: () {
-                              Get.to(ProfileNursePage());
+                              cont.openBottomShead(context, cont.nurses[index]);
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 15),
@@ -326,26 +330,18 @@ class HomePage extends StatelessWidget {
                                               decoration: BoxDecoration(
                                                 
                                                 borderRadius: BorderRadius.circular(5), // Ajusta el valor según lo redondeado que desees
-                                                color: Colors.black,
+                                                color: Color.fromRGBO(43, 43, 43, 1),
                                               ),
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.center,
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  const Icon(
-                                                    Icons.star,
-                                                    color: Color.fromRGBO(252, 252, 252, 1),
-                                                    size: 14,
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 3,
-                                                  ),
                                                   Text(
-                                                    '4.5',
+                                                    '${cont.nurses[index].id}/h',
                                                     style: GoogleFonts.poppins(
                                                       fontSize: 12,
                                                       fontWeight: FontWeight.normal,
-                                                      color: const Color.fromRGBO(252, 252, 252, 1), // Color del texto
+                                                      color:  Color.fromRGBO(252, 252, 252, 1), // Color del texto
                                                     ),
                                                   ),
                                                 ],
@@ -372,40 +368,6 @@ class HomePage extends StatelessWidget {
       }
 }
 
-      /*child: AppBar(
-                
-                bottom: TabBar(
-              
-                  isScrollable: true,
-                  indicatorColor: Colors.green,
-                  unselectedLabelColor: Colors.black,
-                  tabs: List<Widget>.generate(cont.roles.length, (index) {
-                    return Tab(
-                      child: Text(
-                        cont.roles[index].name ?? ''),
-                    );
-                  }),
-              
-                ),
-              ),
-            ),
-          ),*
-          body: TabBarView(
-            children: cont.roles.map((Rol rol) {
-              // Implementa la lógica para mostrar la vista de cada rol aquí
-              return FutureBuilder(
-                future: cont.getUsers(rol.id ?? ''), 
-                builder: (context, AsyncSnapshot<List<User>> snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data?.length ?? 0,
-                      itemBuilder:  (_, index) {
-                        return _buildSmallCard(snapshot.data![index], 2.5);
-                  });
-                  } else {
-                    return Container();
-                  }
-            });}).toList(),*/
  
 
 

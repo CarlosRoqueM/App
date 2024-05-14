@@ -1,8 +1,12 @@
 import 'package:app/src/models/rol.dart';
 import 'package:app/src/models/user.dart';
+import 'package:app/src/pages/client/enfermeros/detail/profileNurse_page.dart';
+import 'package:app/src/pages/detail/profileNurse_page.dart';
 import 'package:app/src/providers/users_providers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class HomeController extends GetxController {
 
@@ -50,5 +54,13 @@ class HomeController extends GetxController {
   Future<List<User>> getUsers(String idUser) async {
     return await usersProviders.findByRoles(idUser);
   }
+
+  void openBottomShead (BuildContext context, User user) {
+    showMaterialModalBottomSheet(
+      context: context,
+      builder: (context) => ProfileNursePage(user: user,),
+    );
+  }
+
 
 }

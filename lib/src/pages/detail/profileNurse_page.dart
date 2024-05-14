@@ -1,10 +1,11 @@
+import 'package:app/src/models/user.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileNursePage extends StatelessWidget {
-  const ProfileNursePage({Key? key});
+class ProfileNursePage2 extends StatelessWidget {
+  const ProfileNursePage2({Key? key, required User user});
 
   @override
   Widget build(BuildContext context) {
