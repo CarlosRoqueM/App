@@ -1,6 +1,6 @@
-import 'package:app/src/pages/home/home_controller.dart';
+import 'package:app/src/pages/client/enfermeros/detail/profileNurse_page.dart';
+import 'package:app/src/pages/client/home/home_controller.dart';
 import 'package:app/src/pages/login/login_page.dart';
-import 'package:app/src/pages/profile/profileNurse_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/src/widgets/BackgroundtemplateOn.dart';
 import 'package:app/utils/global_color.dart';

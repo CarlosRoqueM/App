@@ -1,5 +1,5 @@
-import 'package:app/src/Screen/main_screen.dart';
-import 'package:app/src/pages/home/home_page.dart';
+
+import 'package:app/src/pages/client/home/home_page.dart';
 import 'package:app/src/pages/login/login_controller.dart';
 import 'package:app/src/pages/splash/splash_page.dart';
 import 'package:app/src/widgets/text_form_global.dart';
@@ -59,29 +59,34 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _textdontAccount() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          'No tienes una cuenta?',
-          style: GoogleFonts.poppins(
-              color: GlobalColors.primaryColor,
-              fontSize: 16,
-              fontWeight: FontWeight.normal),
-        ),
-        const SizedBox(width: 10),
-        GestureDetector(
-          onTap: () => cont.gotoRegisterPage(),
-          child: Text(
-            'Registrate',
+    return Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        
+        children: [
+          Text(
+            'No tienes una cuenta?',
             style: GoogleFonts.poppins(
-                color: GlobalColors.secondColor,
+                color: GlobalColors.primaryColor,
                 fontSize: 16,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.normal),
           ),
-        ),
-      ],
+          const SizedBox(width: 10),
+          GestureDetector(
+            onTap: () => cont.gotoRegisterPage(),
+            child: Text(
+              'Registrate',
+              style: GoogleFonts.poppins(
+                  color: GlobalColors.secondColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -223,37 +228,46 @@ class LoginPage extends StatelessWidget {
 
 
   Widget _loginbutton() {
-    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-      backgroundColor: GlobalColors.primaryColor,
-      minimumSize: const Size(88, 36),
-      padding: const EdgeInsets.symmetric(horizontal: 145, vertical: 18),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
-    );
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ElevatedButton(
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    backgroundColor: GlobalColors.primaryColor,
+    minimumSize: const Size(88, 36),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(12)),
+    ),
+  );
+
+  return LayoutBuilder(
+    builder: (BuildContext context, BoxConstraints constraints) {
+      return Container(
+        padding: const EdgeInsets.all(10),
+      
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              
               style: raisedButtonStyle,
-              //onPressed: () => cont.login(), (para cuandose obtenga la coneccion )
-              onPressed: () => {
-                cont.login(),
-              },
-              child: Text(
-                'Ingresar',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
+              onPressed: () => cont.login(),
+              child: Container(
+                
+                width: constraints.maxWidth * 1,
+                padding: EdgeInsets.all(10), // 80% of screen width
+                child: Center(
+                  
+                  child: Text(
+                    'Ingresar',
+                    
+                    style: GoogleFonts.poppins(color: Colors.white,
+                    fontSize: 16,),
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ))
-        ],
-      ),
-    );
-  }
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
 }

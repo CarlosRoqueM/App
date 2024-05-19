@@ -131,15 +131,15 @@ class RegisterController extends GetxController {
 
         if(responseApi.success == true) {
           GetStorage().write('user', responseApi.data);
-          goToMainPage();
+          goToLoginPage();
         }else{
           Get.snackbar('Registro erroneo', responseApi.message ?? '', backgroundColor: Colors.red, colorText: Colors.white);
         }
       });
   }
 
-  void goToMainPage() {
-    Get.offNamedUntil('/main', (route) => false);
+  void goToLoginPage() {
+    Get.offNamedUntil('/login', (route) => false);
   }
 
   Future selectImage(ImageSource imageSource) async {
