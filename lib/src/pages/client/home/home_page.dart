@@ -147,7 +147,7 @@ class HomePage extends StatelessWidget {
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 15),
-                              width: 200,
+                              width: 260,
                               decoration: const BoxDecoration(
                                 color: Colors.transparent,
                               ),
@@ -284,7 +284,7 @@ class HomePage extends StatelessWidget {
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 15),
-                              width: 200,
+                              width: 260,
                               decoration: const BoxDecoration(
                                 color: Colors.transparent,
                               ),

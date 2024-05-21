@@ -1,5 +1,6 @@
 
 import 'package:app/src/models/user.dart';
+import 'package:app/src/pages/client/address/list/client_address_list_page.dart';
 import 'package:app/src/pages/client/enfermeros/clientMain_controller.dart';
 import 'package:app/src/pages/client/enfermeros/detail/profileNurse_controller.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
@@ -332,6 +333,7 @@ Widget _nextButton() {
                 style: raisedButtonStyle,
                 onPressed: () {
                   //cont.finishRegistration(context);
+                  controller.goToAddressListPage();
                 },
                 child: Container(
                   

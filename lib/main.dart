@@ -3,6 +3,8 @@
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/Onboarding/onboarding_page.dart';
 import 'package:app/src/pages/client/Search/searchPage.dart';
+import 'package:app/src/pages/client/address/create/client_address_create_page.dart';
+import 'package:app/src/pages/client/address/list/client_address_list_page.dart';
 import 'package:app/src/pages/client/enfermeros/clientMainPage.dart';
 import 'package:app/src/pages/client/profile/info/profilePage.dart';
 import 'package:app/src/pages/client/profile/update/updateProfilePage.dart';
@@ -66,7 +68,9 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/client/profile/update', page: () => updateProfilePage()),
         GetPage(name: '/client/settings', page: () =>  SettingsPage()),
         GetPage(name: '/client/home', page: () => HomePage()),
-         GetPage(name: '/client/search', page: () => SearchPage()),
+        GetPage(name: '/client/search', page: () => SearchPage()),
+        GetPage(name: '/client/address/create', page: () => ClientAddressCreatePage()),
+        GetPage(name: '/client/address/list', page: () => ClientAddressListPage()),
       ], 
       navigatorKey: Get.key,
     );
