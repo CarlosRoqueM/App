@@ -14,6 +14,10 @@ class LoginController extends GetxController {
     Get.toNamed('/register');
   }
 
+  void gotoRegisterPageNurse() {
+    Get.toNamed('/registerNurse');
+  }
+
   void login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
