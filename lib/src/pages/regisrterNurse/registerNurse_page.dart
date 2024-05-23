@@ -1,29 +1,31 @@
-import 'package:app/src/pages/client/home/home_page.dart';
-import 'package:app/src/pages/login/login_controller.dart';
-import 'package:app/src/pages/register/register_page.dart';
-import 'package:app/src/pages/splash/splash_page.dart';
-import 'package:app/src/widgets/text_form_global.dart';
+import 'package:app/src/pages/regisrterNurse/registerNurse_controller.dart';
+import 'package:app/src/pages/register/register_controller.dart';
+import 'package:app/src/pages/register/register_page2.dart';
+import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
-import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginController cont = Get.put(LoginController());
+class RegisterNursePage extends StatelessWidget {
 
+  //Asignar los cambios y roteo de las nuevas paginas para el registro del enfermero
+
+  RegisterNurseController cont = Get.put(RegisterNurseController());
+  final ValueNotifier<bool> _termsAccepted = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return BackgroundTemplate(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         bottomNavigationBar: Container(
             padding: const EdgeInsets.all(8),
-            height: 140,
+            height: 90,
             child: Column(
-              children: [_textdontAccount()],
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [_nextButton()],
             )),
         body: Container(
             padding: const EdgeInsets.all(8),
@@ -36,8 +38,8 @@ class LoginPage extends StatelessWidget {
                 //_googleButton(),
                 _email(),
                 _password(),
-                _loginbutton(),
-                _textforPassword()
+                _confiPassword(),
+                _termsAndConditions()
               ],
             )),
       ),
@@ -56,79 +58,31 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _textdontAccount() {
+  Widget _termsAndConditions() {
     return Container(
       padding: const EdgeInsets.all(8),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Row(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '¿No tienes una cuenta?',
-                style: GoogleFonts.poppins(
-                    color: GlobalColors.primaryColor,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center,
-              ),
-              TextButton(
-                onPressed: () => cont.gotoRegisterPage(),
-                child: Text(
-                  'Registrate',
-                  style: GoogleFonts.poppins(
-                      color: GlobalColors.secondColor,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
+          ValueListenableBuilder<bool>(
+            valueListenable: _termsAccepted,
+            builder: (context, value, child) {
+              return Checkbox(
+                value: value,
+                onChanged: (bool? newValue) {
+                  _termsAccepted.value = newValue ?? false;
+                },
+              );
+            },
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '¿Eres enfermero?',
-                style: GoogleFonts.poppins(
-                    color: GlobalColors.primaryColor,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center,
+          Expanded(
+            child: Text(
+              'Acepto las condiciones del servicio y la política de privacidad',
+              style: GoogleFonts.poppins(
+                color: const Color.fromRGBO(103, 114, 148, 100),
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
               ),
-              TextButton(
-                onPressed: () => cont.gotoRegisterPageNurse(),
-                child: Text(
-                  'Registrate',
-                  style: GoogleFonts.poppins(
-                      color: GlobalColors.secondColor,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _textforPassword() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          Text(
-            'Olvidaste tu contraseña?',
-            style: GoogleFonts.poppins(
-                color: GlobalColors.primaryColor,
-                fontSize: 15,
-                fontWeight: FontWeight.w500),
-            textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),
@@ -142,9 +96,9 @@ class LoginPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Bienvenido',
+            'Únete a nosotros para empezar ofertar tus servicios de enfermería.',
             style: GoogleFonts.poppins(
-                color: Colors.black, fontSize: 30, fontWeight: FontWeight.w600),
+                color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -159,9 +113,9 @@ class LoginPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Puedes buscar enfermeros y solicitar sus servicios de enfermería.',
+            'Podrás encontrar pacientes que necesiten de tus servicios de enfermería.',
             style: GoogleFonts.poppins(
-              color: Color.fromRGBO(103, 114, 148, 100),
+              color: const Color.fromRGBO(103, 114, 148, 100),
               fontSize: 15,
               fontWeight: FontWeight.normal,
             ),
@@ -176,7 +130,7 @@ class LoginPage extends StatelessWidget {
       //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       backgroundColor: Colors.white,
       minimumSize: Size(88, 36),
-      padding: EdgeInsets.symmetric(horizontal: 120, vertical: 18),
+      padding: EdgeInsets.symmetric(horizontal: 125, vertical: 18),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(12),
@@ -239,58 +193,65 @@ class LoginPage extends StatelessWidget {
 
   Widget _email() {
     return _customTextField(
-      controller: cont.emailController,
-      labelText: 'Email',
-      keyboardType: TextInputType.emailAddress,
-    );
+        controller: cont.emailController,
+        labelText: 'Email',
+        keyboardType: TextInputType.emailAddress,
+        obscureText: false);
   }
 
   Widget _password() {
     return _customTextField(
-      controller: cont.passwordController,
-      labelText: 'Contraseña',
-      obscureText: true,
-    );
+        controller: cont.passwordController,
+        labelText: 'Contraseña',
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true);
   }
 
-  Widget _loginbutton() {
+  Widget _confiPassword() {
+    return _customTextField(
+        controller: cont.confirmPasswordController,
+        labelText: 'Confirmar Contraseña',
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true);
+  }
+
+  Widget _nextButton() {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      //onPrimary: Color.fromRGBO(103, 114, 148, 100),
       backgroundColor: GlobalColors.primaryColor,
       minimumSize: const Size(88, 36),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
-
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return Container(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ElevatedButton(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return Container(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
                 style: raisedButtonStyle,
-                onPressed: () => cont.login(),
+                onPressed: () {
+                  cont.gotoRegisterPage2();
+                },
                 child: Container(
                   width: constraints.maxWidth * 1,
-                  padding: EdgeInsets.all(10), // 80% of screen width
-                  child: Center(
-                    child: Text(
-                      'Ingresar',
-                      style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    'Siguiente',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+                ))
+          ],
+        ),
+      );
+    });
   }
 }

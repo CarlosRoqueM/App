@@ -44,7 +44,7 @@ class SearchPage extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: List<Widget>.generate(cont.nurses.length, (index) {
+                                children: List<Widget>.generate(cont.nurses.length,  (index) {
                                   // Tarjetas "Enfermeros Populares"
                                   return Obx(() =>  GestureDetector(
                                     onTap: () {
@@ -63,8 +63,8 @@ class SearchPage extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(12),
                                             child: Image.network(
                                               cont.nurses[index].image ?? '',
-                                              height: 120,
-                                              width: double.infinity ,
+                                              height: 180,
+                                              width: double.infinity,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -173,13 +173,11 @@ class SearchPage extends StatelessWidget {
           color: const Color.fromRGBO(240, 240, 240, 1),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: GestureDetector(
-          onTap: () => {
-
-          },
           child: TextFormField(
+            controller: TextEditingController(),
             autofocus: false,
             keyboardType: TextInputType.name,
+            onChanged: cont.onChangeText,
             decoration: InputDecoration(
                 hintText: hintText,
                 enabled: enabled,
@@ -195,8 +193,7 @@ class SearchPage extends StatelessWidget {
             ),
           ),
         ),
-      )
-    );
+      );
   }
 
   Widget _search() {

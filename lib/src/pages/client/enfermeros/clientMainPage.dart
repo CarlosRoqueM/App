@@ -1,5 +1,7 @@
 
 import 'package:app/src/pages/client/Search/searchPage.dart';
+import 'package:app/src/pages/client/address/map/client_address_map_main.dart';
+import 'package:app/src/pages/client/address/map/client_address_map_page.dart';
 import 'package:app/src/pages/client/enfermeros/clientMain_controller.dart';
 import 'package:app/src/pages/client/home/home_page.dart';
 import 'package:app/src/pages/client/profile/info/profilePage.dart';
@@ -22,7 +24,7 @@ class ClientMainPage extends StatelessWidget {
         index: cont.indexTap.value,
         children: [
           HomePage(),
-          FavoritePage(),
+          ClientAddressMapPageMain(),
           SearchPage(),
           SettingsPage(),
         ],

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/src/models/rol.dart';
 import 'package:app/src/models/user.dart';
 import 'package:app/src/pages/client/enfermeros/detail/profileNurse_page.dart';
@@ -16,6 +18,7 @@ class HomeController extends GetxController {
     print('User: ${user.toJson()}');
     getRoles();
     getNurse();
+    getNursesByLastName('');
   }
 
   
@@ -36,6 +39,8 @@ class HomeController extends GetxController {
 
   List<User> nurses = <User>[].obs; 
 
+  String lastName = '';
+  Timer? searchOnStoppedTyping;
 
   void getRoles() async {
     var result = await usersProviders.getAll();
@@ -53,6 +58,22 @@ class HomeController extends GetxController {
 
   Future<List<User>> getUsers(String idUser) async {
     return await usersProviders.findByRoles(idUser);
+  }
+
+  Future<List<User>> getNursesByLastName(String lastName) async {
+    return await usersProviders.findByLastName(lastName);
+  }
+
+  void onChangeText(String text) {
+    const duration = Duration(milliseconds: 750);
+    if (searchOnStoppedTyping != null) {
+      searchOnStoppedTyping?.cancel();
+    }
+
+    searchOnStoppedTyping = Timer( duration, () {
+      lastName = text;
+      print('TEXTO COMPLERO: ${text}');
+    });
   }
 
   void openBottomShead (BuildContext context, User user) {

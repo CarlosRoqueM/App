@@ -145,7 +145,7 @@ class HomePage extends StatelessWidget {
                                 },
                                 child: Container(
                                   margin: EdgeInsets.only(right: 15),
-                                  width: 200,
+                                  width: 260,
                                   decoration: const BoxDecoration(
                                     color: Colors.transparent,
                                   ),
@@ -178,7 +178,7 @@ class HomePage extends StatelessWidget {
                                                 Text(
                                                   '${cont.nurses[index].name} ${cont.nurses[index].lastname1}',
                                                   style: GoogleFonts.poppins(
-                                                    fontSize: 14,
+                                                    fontSize: 16,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -298,7 +298,7 @@ class HomePage extends StatelessWidget {
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 15),
-                              width: 200,
+                              width: 260,
                               decoration: const BoxDecoration(
                                 color: Colors.transparent,
                               ),

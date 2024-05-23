@@ -45,6 +45,25 @@ class UsersProviders extends GetConnect {
     return roles;
   }
 
+  /*--- BUSQUEDA DE LOS ENFERMEROS POR APELLIDO---- */
+
+  Future<List<User>> findByLastName(String lastname1) async {
+    Response response = await get('$url/nurses/$lastname1',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+    );
+
+    if(response.body == null) {
+      Get.snackbar('Error', 'No se pudo ejecutar la petición');
+      return [];
+    }
+
+    List<User> nurses = User.fromJsonList(response.body);
+
+    return nurses;
+  }
+
   Future<List<User>> findByRoles(String idUser) async {
     Response response = await get('$url/findByRoles/$idUser',
     headers: {
@@ -103,7 +122,7 @@ class UsersProviders extends GetConnect {
 
   Future<Stream> createWithImage(User user, File image) async {
 
-    Uri uri = Uri.http(Environment.API_URL_OLD, '/api/users/createWithImage');
+    Uri uri = Uri.http(Environment.API_URL_OLD,'/api/users/createWithImage');
 
     final request = http.MultipartRequest('POST', uri);
     request.files.add(http.MultipartFile(

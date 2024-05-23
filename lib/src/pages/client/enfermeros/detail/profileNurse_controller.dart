@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 class ProfileNurseController extends GetxController {
   
-  
+  void goToAddressListPage() {
+    Get.toNamed('/client/address/list');
+  }
 
 }
