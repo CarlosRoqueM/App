@@ -1,8 +1,11 @@
 import 'dart:ffi';
 
 import 'package:app/src/models/address.dart';
+import 'package:app/src/models/profile.dart';
 import 'package:app/src/pages/client/address/create/client_address_create_page.dart';
 import 'package:app/src/pages/client/address/list/client_address_list_controller.dart';
+import 'package:app/src/pages/client/profiles/create/client_profiles_create_controller.dart';
+import 'package:app/src/pages/client/profiles/list/client_profiles_list_controller.dart';
 import 'package:app/src/pages/register/register_controller.dart';
 import 'package:app/src/pages/register/register_page2.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
@@ -15,13 +18,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ClientAddressListPage extends StatelessWidget {
-  ClientAddressListController cont = Get.put(ClientAddressListController());
-  final ValueNotifier<bool> _termsAccepted = ValueNotifier(false);
+class ClientProfilesListPage extends StatelessWidget {
+  ClientProfilesListController cont = Get.put(ClientProfilesListController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ClientAddressListController> ( builder: (value) => BackgroundTemplate(
+    return GetBuilder<ClientProfilesListController> ( builder: (value) => BackgroundTemplate(
       child: Scaffold(
         resizeToAvoidBottomInset: false, 
         backgroundColor: Colors.transparent,
@@ -55,8 +57,8 @@ class ClientAddressListPage extends StatelessWidget {
 
   Widget _listAddress(BuildContext context) {
     return FutureBuilder(
-      future: cont.getAddress(),
-      builder: (context, AsyncSnapshot<List<Address>> snapshot) {
+      future: cont.getProfiles(),
+      builder: (context, AsyncSnapshot<List<Profile>> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data!.isNotEmpty) {
             return Expanded( 
@@ -96,7 +98,7 @@ class ClientAddressListPage extends StatelessWidget {
     );
   }
 
-  Widget _radioSelectorAddress(Address address, int index) {
+  Widget _radioSelectorAddress(Profile profile, int index) {
     return Container(
       padding: EdgeInsets.all(8),
       child: Column(
@@ -108,23 +110,35 @@ class ClientAddressListPage extends StatelessWidget {
                 groupValue: cont.radioValue.value,
                 onChanged: cont.handleRadioValueChange,
               ),
-              Column(
+              Row(
                 children: [
-                  Text(
-                    address.address ?? '',
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(profile.image ?? ''),
+                      radius: 40,
+                      ),
                   ),
-                  Text(
-                    address.neighborhood ?? '',
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        (profile.name ?? '') + (' ') + (profile.lastname1 ?? '') + (' ') + (profile.lastname2 ?? ''),
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        (profile.age ?? '') + ' años',
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
                   ),
                 ]
               ),
@@ -149,49 +163,19 @@ class ClientAddressListPage extends StatelessWidget {
             IconButton(
                 onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios), iconSize: 25,),
             Text(
-              'Direcciones',
+              'Perfiles de pacientes',
               style: GoogleFonts.poppins(
                   color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
                   ]),
             IconButton(
-                onPressed: () => cont.goToAddressCreatePage(), icon: const Icon(Icons.add), iconSize: 30,),
+                onPressed: () => cont.goToProfilesCreatePage(), icon: const Icon(Icons.add), iconSize: 30,),
           ],
         ),
     );
   }
 
- Widget _termsAndConditions() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Row(
-        children: [
-          ValueListenableBuilder<bool>(
-            valueListenable: _termsAccepted,
-            builder: (context, value, child) {
-              return Checkbox(
-                value: value,
-                onChanged: (bool? newValue) {
-                  _termsAccepted.value = newValue ?? false;
-                },
-              );
-            },
-          ),
-          Expanded(
-            child: Text(
-              'Acepto las condiciones del servicio y la política de privacidad',
-              style: GoogleFonts.poppins(
-                color: const Color.fromRGBO(103, 114, 148, 100),
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _tittle() {
     return Container(
@@ -200,7 +184,7 @@ class ClientAddressListPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Elige tu dirección donde recibirás el servicio de enfermería',
+              'Elige un perfil de paciente que deseas que sea atendido por el enfermero',
               style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 25,
@@ -220,7 +204,7 @@ class ClientAddressListPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Recuerda que puedes agregar más direcciones en tu perfil',
+              'Recuerda que puedes agregar más perfiles de pacientes en tu perfil',
               style: GoogleFonts.poppins(
                 color: const Color.fromRGBO(103, 114, 148, 100),
                 fontSize: 15,
@@ -280,7 +264,7 @@ class ClientAddressListPage extends StatelessWidget {
             ElevatedButton(
                 style: raisedButtonStyle,
                 onPressed: () {
-                  cont.goToProfilesListPage();
+                  //cont.gotoRegisterPage2();
                 },
                 child: Container(
                   width: constraints.maxWidth * 1,

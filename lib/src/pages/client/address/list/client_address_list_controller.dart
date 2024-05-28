@@ -38,6 +38,10 @@ class ClientAddressListController extends GetxController {
   void goToAddressCreatePage() {
     Get.toNamed('/client/address/create');
   }
+
+  void goToProfilesListPage() {
+    Get.toNamed('/client/profiles/list');
+  }
   
 
 }

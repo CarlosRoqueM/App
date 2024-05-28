@@ -9,6 +9,8 @@ import 'package:app/src/pages/client/enfermeros/clientMainPage.dart';
 import 'package:app/src/pages/client/profile/info/profilePage.dart';
 import 'package:app/src/pages/client/profile/update/updateProfilePage.dart';
 import 'package:app/src/pages/client/home/home_page.dart';
+import 'package:app/src/pages/client/profiles/create/client_profiles_create_page.dart';
+import 'package:app/src/pages/client/profiles/list/client_profiles_list_page.dart';
 import 'package:app/src/pages/regisrterNurse/registerNurse_page.dart';
 import 'package:app/src/pages/register/splashRegister_page.dart';
 import 'package:app/src/pages/client/settings/settings_page.dart';
@@ -50,7 +52,8 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: 'App Tesis',
       debugShowCheckedModeBanner: false,
-      initialRoute: userSession.id != null ? '/main' : '/', //DEpendiendo del id redigira a diferentes rutas tanto del cliente como del enfermero
+      //initialRoute: userSession.id != null ? '/main' : '/',
+      initialRoute: userSession.id != null ? userSession.roles!.length > 1 ? '/mainNurse' : '/main' : '/', //DEpendiendo del id redigira a diferentes rutas tanto del cliente como del enfermero
       getPages: [
         /*------------- General Page --------------------*/
         GetPage(name: '/', page: () => SplashPage()),
@@ -77,6 +80,15 @@ class _MyAppState extends State<MyApp> {
             page: () => ClientAddressCreatePage()),
         GetPage(
             name: '/client/address/list', page: () => ClientAddressListPage()),
+        GetPage(
+            name: '/client/profiles/create',
+            page: () => ClientProfilesCreatePage()),
+        GetPage(
+            name: '/client/profiles/list', page: () => ClientProfilesListPage()),
+
+        /*------------- Nurse Page --------------------*/
+
+        
       ],
       navigatorKey: Get.key,
     );
