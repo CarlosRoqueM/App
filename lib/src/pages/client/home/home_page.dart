@@ -329,7 +329,7 @@ class HomePage extends StatelessWidget {
                                             Text(
                                               '${cont.nurses[index].name} ${cont.nurses[index].lastname1}',
                                               style: GoogleFonts.poppins(
-                                                fontSize: 14,
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),

@@ -10,6 +10,7 @@ import 'package:app/src/pages/client/profile/info/profilePage.dart';
 import 'package:app/src/pages/client/profile/update/updateProfilePage.dart';
 import 'package:app/src/pages/client/home/home_page.dart';
 import 'package:app/src/pages/regisrterNurse/registerNurse_page.dart';
+import 'package:app/src/pages/regisrterNurse/registerNurse_page2.dart';
 import 'package:app/src/pages/register/splashRegister_page.dart';
 import 'package:app/src/pages/client/settings/settings_page.dart';
 import 'package:app/src/pages/client/settings/settings_page_controller.dart';
@@ -50,7 +51,9 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: 'App Tesis',
       debugShowCheckedModeBanner: false,
-      initialRoute: userSession.id != null ? '/main' : '/', //DEpendiendo del id redigira a diferentes rutas tanto del cliente como del enfermero
+      initialRoute: userSession.id != null
+          ? '/main'
+          : '/', //DEpendiendo del id redigira a diferentes rutas tanto del cliente como del enfermero
       getPages: [
         /*------------- General Page --------------------*/
         GetPage(name: '/', page: () => SplashPage()),
@@ -59,6 +62,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/On3', page: () => OnboardingPage3()),
         GetPage(name: '/login', page: () => LoginPage()),
         GetPage(name: '/registerNurse', page: () => RegisterNursePage()),
+        GetPage(name: '/registerNurse2', page: () => RegisterNursePage2()),
         GetPage(name: '/register', page: () => RegisterPage()),
         GetPage(name: '/register2', page: () => RegisterPage2()),
         GetPage(name: '/splashRegister', page: () => SplashRegisterPage()),

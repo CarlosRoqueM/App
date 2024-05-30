@@ -8,6 +8,10 @@
 	<string>Necesito permisos para acceder a la galeria de fotos</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Necesito permisos para acceder a la camara</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Esta aplicación necesita acceso a tu ubicación para funcionar correctamente.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Esta aplicación necesita acceso a tu ubicación para funcionar correctamente.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Necesito permisos para acceder al microfono</string>
 	<key>CFBundleDisplayName</key>

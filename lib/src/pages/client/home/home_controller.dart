@@ -11,7 +11,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class HomeController extends GetxController {
-
   var user = User.fromJson(GetStorage().read('user') ?? {}).obs;
 
   HomeController() {
@@ -20,8 +19,6 @@ class HomeController extends GetxController {
     getNurse();
     getNursesByLastName('');
   }
-
-  
 
   void logout() {
     GetStorage().remove('user');
@@ -32,12 +29,11 @@ class HomeController extends GetxController {
     Get.toNamed('/client/search');
   }
 
-
   UsersProviders usersProviders = UsersProviders();
 
-  List<Rol> roles = <Rol>[].obs; 
+  List<Rol> roles = <Rol>[].obs;
 
-  List<User> nurses = <User>[].obs; 
+  List<User> nurses = <User>[].obs;
 
   String lastName = '';
   Timer? searchOnStoppedTyping;
@@ -49,9 +45,9 @@ class HomeController extends GetxController {
     roles.addAll(result);
   }
 
-  void getNurse () async {
-    var result = await usersProviders.getAllNurses();
-    
+  void getNurse() async {
+    List<User> result = await usersProviders.getAllNurses();
+
     nurses.clear();
     nurses.addAll(result);
   }
@@ -61,7 +57,8 @@ class HomeController extends GetxController {
   }
 
   Future<List<User>> getNursesByLastName(String lastName) async {
-    return await usersProviders.findByLastName(lastName);
+    List<User> result = await usersProviders.findByLastName(lastName);
+    return result;
   }
 
   void onChangeText(String text) {
@@ -70,18 +67,18 @@ class HomeController extends GetxController {
       searchOnStoppedTyping?.cancel();
     }
 
-    searchOnStoppedTyping = Timer( duration, () {
+    searchOnStoppedTyping = Timer(duration, () {
       lastName = text;
       print('TEXTO COMPLERO: ${text}');
     });
   }
 
-  void openBottomShead (BuildContext context, User user) {
+  void openBottomShead(BuildContext context, User user) {
     showMaterialModalBottomSheet(
       context: context,
-      builder: (context) => ProfileNursePage(user: user,),
+      builder: (context) => ProfileNursePage(
+        user: user,
+      ),
     );
   }
-
-
 }
