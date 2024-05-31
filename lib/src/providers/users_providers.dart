@@ -52,14 +52,9 @@ class UsersProviders extends GetConnect {
       return [];
     }
 
-    Map<String, dynamic> data = json.decode(response.body);
-    if (data['data'] is List<dynamic>) {
-      List<User> nurses = User.fromJsonList(data['data']);
-      return nurses;
-    } else {
-      Get.snackbar('Error', 'Los datos recibidos no son una lista');
-      return [];
-    }
+    List<User> nurses = User.fromJsonList(response.body);
+
+    return nurses;
   }
 
   Future<List<User>> findByRoles(String idUser) async {
@@ -81,22 +76,15 @@ class UsersProviders extends GetConnect {
   Future<List<User>> getAllNurses() async {
     Response response =
         await get('$url/nurses', headers: {'Content-Type': 'application/json'});
-    print('API Response: ${response.body}');
 
     if (response.body == null) {
       Get.snackbar('Error', 'No se pudo ejecutar la petición');
       return [];
     }
 
-    Map<String, dynamic> data = json.decode(response.body);
-    if (data['data'] is List<dynamic>) {
-      List<User> users =
-          (data['data'] as List).map((item) => User.fromJson(item)).toList();
-      return users;
-    } else {
-      Get.snackbar('Error', 'Los datos recibidos no son una lista');
-      return [];
-    }
+    List<User> users = User.fromJsonList(response.body);
+
+    return users;
   }
 
   /* ------ Sin imagen ----------*/

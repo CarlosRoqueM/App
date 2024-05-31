@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 Rol rolFromJson(String str) => Rol.fromJson(json.decode(str));
-
 String rolToJson(Rol data) => json.encode(data.toJson());
 
 class Rol {

@@ -6,7 +6,6 @@ import 'package:app/src/models/user.dart';
 import 'package:app/src/providers/users_providers.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +24,6 @@ class RegisterNurseController extends GetxController {
   TextEditingController lastname1Controller = TextEditingController();
   TextEditingController lastname2Controller = TextEditingController();
   TextEditingController locationController = TextEditingController();
-
   //Agregar los datos faltantes para el registro de enfermeros
   TextEditingController descriptionController = TextEditingController();
   TextEditingController priceController = TextEditingController();
@@ -104,7 +102,10 @@ class RegisterNurseController extends GetxController {
         lastname1.isEmpty ||
         lastname2.isEmpty ||
         location.isEmpty ||
-        phone.isEmpty) {
+        phone.isEmpty ||
+        description.isEmpty ||
+        price.isEmpty ||
+        experience.isEmpty) {
       Get.snackbar('Formulario Inválido', 'Debes completar todos los campos');
       return;
     }

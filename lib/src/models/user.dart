@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:app/src/models/rol.dart';
 
-User userFromJson(Map<String, dynamic> json) => User.fromJson(json);
+User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
 
@@ -65,6 +65,7 @@ class User {
     List<User> toList = [];
 
     jsonList.forEach((item) {
+      User user = User.fromJson(item);
       toList.add(User.fromJson(item));
     });
     return toList;
