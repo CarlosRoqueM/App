@@ -41,6 +41,7 @@ class RegisterNursePage2 extends StatelessWidget {
                     _phone(),
                     // Nuevos campos
                     _price(),
+                    _age(),
                     _experience(),
                     _description(),
                   ],
@@ -149,7 +150,7 @@ class RegisterNursePage2 extends StatelessWidget {
   Widget _dni() {
     return _customTextField(
       controller: cont.dniController,
-      labelText: 'DN',
+      labelText: 'DNI',
       keyboardType: TextInputType.number,
     );
   }
@@ -198,7 +199,7 @@ class RegisterNursePage2 extends StatelessWidget {
     return Container(
       height: 150, // Ajusta esto a la altura que prefieras
       child: _customTextField(
-        controller: cont.descriptionController,
+        controller: cont.ageController,
         labelText: 'Descripción',
         keyboardType: TextInputType.text,
       ),
@@ -209,6 +210,14 @@ class RegisterNursePage2 extends StatelessWidget {
     return _customTextField(
       controller: cont.priceController,
       labelText: 'Precio por hora',
+      keyboardType: TextInputType.number,
+    );
+  }
+
+  Widget _age() {
+    return _customTextField(
+      controller: cont.descriptionController,
+      labelText: 'Edad(años)',
       keyboardType: TextInputType.number,
     );
   }

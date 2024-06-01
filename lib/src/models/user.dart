@@ -19,6 +19,7 @@ class User {
   String? password;
   String? sessionToken;
   String? description;
+  String? age;
   String? price;
   String? experience;
   List<Rol>? roles = [];
@@ -37,6 +38,7 @@ class User {
     this.sessionToken,
     this.roles,
     this.description,
+    this.age,
     this.price,
     this.experience,
   });
@@ -53,6 +55,7 @@ class User {
         image: json["image"],
         password: json["password"],
         description: json["description"],
+        age: json["age"],
         price: json["price"],
         experience: json["experience"],
         sessionToken: json["sessionToken"],
@@ -82,6 +85,7 @@ class User {
         "location": location,
         "image": image,
         "password": password,
+        "age": age,
         "description": description,
         "price": price,
         "experience": experience,

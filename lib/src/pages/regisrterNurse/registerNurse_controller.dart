@@ -25,6 +25,7 @@ class RegisterNurseController extends GetxController {
   TextEditingController lastname2Controller = TextEditingController();
   TextEditingController locationController = TextEditingController();
   //Agregar los datos faltantes para el registro de enfermeros
+  TextEditingController ageController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController experienceController = TextEditingController();
@@ -70,6 +71,7 @@ class RegisterNurseController extends GetxController {
       String lastname2,
       String location,
       String phone,
+      String age,
       String description,
       String price,
       String experience) {
@@ -80,6 +82,7 @@ class RegisterNurseController extends GetxController {
     this.locationController.text = location;
     this.phoneController.text = phone;
     // Nuevos campos
+    this.ageController.text = age;
     this.descriptionController.text = description;
     this.priceController.text = price;
     this.experienceController.text = experience;
@@ -93,6 +96,7 @@ class RegisterNurseController extends GetxController {
     String location = locationController.text.trim();
     String phone = phoneController.text.trim();
     // Nuevos campos
+    String age = ageController.text.trim();
     String description = descriptionController.text.trim();
     String price = priceController.text.trim();
     String experience = experienceController.text.trim();
@@ -103,6 +107,7 @@ class RegisterNurseController extends GetxController {
         lastname2.isEmpty ||
         location.isEmpty ||
         phone.isEmpty ||
+        age.isEmpty ||
         description.isEmpty ||
         price.isEmpty ||
         experience.isEmpty) {
@@ -127,7 +132,7 @@ class RegisterNurseController extends GetxController {
     }
 
     saveAdditionalFormData(dni, name, lastname1, lastname2, location, phone,
-        description, price, experience);
+        age, description, price, experience);
     register(context);
   }
 
@@ -141,6 +146,7 @@ class RegisterNurseController extends GetxController {
     String location = locationController.text.trim();
     String phone = phoneController.text.trim();
     // Nuevos campos
+    String age = ageController.text.trim();
     String description = descriptionController.text.trim();
     String price = priceController.text.trim();
     String experience = experienceController.text.trim();
@@ -158,6 +164,7 @@ class RegisterNurseController extends GetxController {
         location: location,
         phone: phone,
         // Nuevos campos
+        age: age,
         description: description,
         price: price,
         experience: experience);
