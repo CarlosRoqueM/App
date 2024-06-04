@@ -11,6 +11,9 @@ import 'package:app/src/pages/client/profile/update/updateProfilePage.dart';
 import 'package:app/src/pages/client/home/home_page.dart';
 import 'package:app/src/pages/client/profiles/create/client_profiles_create_page.dart';
 import 'package:app/src/pages/client/profiles/list/client_profiles_list_page.dart';
+import 'package:app/src/pages/nurse/home/homeNurse_page.dart';
+import 'package:app/src/pages/nurse/reservas/nuseMainPage.dart';
+import 'package:app/src/pages/nurse/settings/settingsNurse_page.dart';
 import 'package:app/src/pages/regisrterNurse/registerNurse_page.dart';
 import 'package:app/src/pages/register/splashRegister_page.dart';
 import 'package:app/src/pages/client/settings/settings_page.dart';
@@ -87,6 +90,10 @@ class _MyAppState extends State<MyApp> {
             name: '/client/profiles/list', page: () => ClientProfilesListPage()),
 
         /*------------- Nurse Page --------------------*/
+
+        GetPage(name: '/mainNurse', page: () => NurseMainPage()),
+        GetPage(name: '/nurse/home', page: () => HomeNursePage()),
+        GetPage(name: '/nurse/settings', page: () => SettingsNursePage()),
 
         
       ],

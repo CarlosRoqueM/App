@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-class HomeController extends GetxController {
+class HomeNurseController extends GetxController {
 
   var user = User.fromJson(GetStorage().read('user') ?? {}).obs;
 
@@ -25,10 +25,6 @@ class HomeController extends GetxController {
   void logout() {
     GetStorage().remove('user');
     Get.offAllNamed('/login');
-  }
-
-  void goToSearchPage() {
-    Get.toNamed('/client/search');
   }
 
 
