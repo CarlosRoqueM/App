@@ -14,51 +14,47 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackgroundTemplate(
       child: Scaffold(
-        resizeToAvoidBottomInset: false, 
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         bottomNavigationBar: Container(
-          padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             height: 90,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [_nextButton()],
             )),
-
-          body: Container(
+        body: Container(
             padding: const EdgeInsets.all(8),
-            child: 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _bottomBack(),
-                    _tittle(),
-                    _subtittle(),
-                    //_googleButton(),
-                    _email(),
-                    _password(),
-                    _confiPassword(),
-                    _termsAndConditions()
-                  ],
-                )
-            ),
-          ),
-      );
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _bottomBack(),
+                _tittle(),
+                _subtittle(),
+                //_googleButton(),
+                _email(),
+                _password(),
+                _confiPassword(),
+                _termsAndConditions()
+              ],
+            )),
+      ),
+    );
   }
 
   //Widgets_privados
 
   Widget _bottomBack() {
     return SafeArea(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-          IconButton(
-              onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios)),
-        ]),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        IconButton(
+            onPressed: () => Get.back(),
+            icon: const Icon(Icons.arrow_back_ios)),
+      ]),
     );
   }
 
- Widget _termsAndConditions() {
+  Widget _termsAndConditions() {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Row(
@@ -91,20 +87,17 @@ class RegisterPage extends StatelessWidget {
 
   Widget _tittle() {
     return Container(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Únete a nosotros para empezar a buscar enfermeros especializado',
-              style: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600),
-              
-            ),
-          ],
-        ),
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Únete a nosotros para empezar a buscar enfermeros especializado',
+            style: GoogleFonts.poppins(
+                color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
     );
   }
 
@@ -112,19 +105,18 @@ class RegisterPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Podrás buscar enfermeros y solicitar sus servicios de enfermería.',
-              style: GoogleFonts.poppins(
-                color: const Color.fromRGBO(103, 114, 148, 100),
-                fontSize: 15,
-                fontWeight: FontWeight.normal,
-              ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Podrás buscar enfermeros y solicitar sus servicios de enfermería.',
+            style: GoogleFonts.poppins(
+              color: const Color.fromRGBO(103, 114, 148, 100),
+              fontSize: 15,
+              fontWeight: FontWeight.normal,
             ),
-          ],
-        
+          ),
+        ],
       ),
     );
   }
@@ -165,7 +157,11 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _customTextField({required TextEditingController controller, required String labelText, TextInputType keyboardType = TextInputType.text, bool obscureText = false}) {
+  Widget _customTextField(
+      {required TextEditingController controller,
+      required String labelText,
+      TextInputType keyboardType = TextInputType.text,
+      bool obscureText = false}) {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Container(
@@ -191,30 +187,29 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _email(){
+  Widget _email() {
     return _customTextField(
-      controller: cont.emailController, 
-      labelText: 'Email',
-      keyboardType: TextInputType.emailAddress,
-      obscureText: false);
+        controller: cont.emailController,
+        labelText: 'Email',
+        keyboardType: TextInputType.emailAddress,
+        obscureText: false);
   }
 
-  Widget _password(){
+  Widget _password() {
     return _customTextField(
-      controller: cont.passwordController, 
-      labelText: 'Contraseña',
-      keyboardType: TextInputType.visiblePassword,
-      obscureText: true);
+        controller: cont.passwordController,
+        labelText: 'Contraseña',
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true);
   }
 
-  Widget _confiPassword(){
+  Widget _confiPassword() {
     return _customTextField(
-      controller: cont.confirmPasswordController, 
-      labelText: 'Confirmar Contraseña',
-      keyboardType: TextInputType.visiblePassword,
-      obscureText: true);
+        controller: cont.confirmPasswordController,
+        labelText: 'Confirmar Contraseña',
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true);
   }
-
 
   Widget _nextButton() {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
@@ -226,7 +221,7 @@ class RegisterPage extends StatelessWidget {
       ),
     );
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
+        builder: (BuildContext context, BoxConstraints constraints) {
       return Container(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -253,6 +248,6 @@ class RegisterPage extends StatelessWidget {
           ],
         ),
       );
-  });
+    });
   }
 }

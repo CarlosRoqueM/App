@@ -13,7 +13,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class RegisterNurseController extends GetxController {
-
   //Aplicar cambios para el registro del enfermero
 
   TextEditingController emailController = TextEditingController();
@@ -25,7 +24,11 @@ class RegisterNurseController extends GetxController {
   TextEditingController lastname1Controller = TextEditingController();
   TextEditingController lastname2Controller = TextEditingController();
   TextEditingController locationController = TextEditingController();
-  //Agregar los datos faltantes para el registro de enfermeros 
+  //Agregar los datos faltantes para el registro de enfermeros
+  TextEditingController ageController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController experienceController = TextEditingController();
 
   UsersProviders usersProviders = UsersProviders();
 
@@ -33,27 +36,27 @@ class RegisterNurseController extends GetxController {
 
   File? imageFile;
 
-  void gotoRegisterPage2() {
-  String email = emailController.text.trim();
-  String password = passwordController.text.trim();
-  String confirmPassword = confirmPasswordController.text.trim();
+  void gotoRegisterPageNurse2() {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+    String confirmPassword = confirmPasswordController.text.trim();
 
-  if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
-    Get.snackbar('Formulario Inválido', 'Debes completar todos los campos');
-    return;
-  }
-  if (!GetUtils.isEmail(email)) {
+    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      Get.snackbar('Formulario Inválido', 'Debes completar todos los campos');
+      return;
+    }
+    if (!GetUtils.isEmail(email)) {
       Get.snackbar('Formulario Inválido', 'El email es inválido');
       return;
+    }
+    if (password != confirmPassword) {
+      Get.snackbar('Formulario Inválido', 'Las contraseñas no coinciden');
+      return;
+    }
+
+    saveFormData(email, password, confirmPassword);
+    Get.toNamed('/registerNurse2');
   }
-  if(password != confirmPassword){
-    Get.snackbar('Formulario Inválido', 'Las contraseñas no coinciden');
-    return;
-  }
-  
-  saveFormData(email, password, confirmPassword);
-  Get.toNamed('/register2');
-}
 
   void saveFormData(String email, String password, String confirmPassword) {
     this.emailController.text = email;
@@ -61,47 +64,77 @@ class RegisterNurseController extends GetxController {
     this.confirmPasswordController.text = confirmPassword;
   }
 
-  void saveAdditionalFormData(String dni, String name, String lastname1, String lastname2, String location, String phone) {
+  void saveAdditionalFormData(
+      String dni,
+      String name,
+      String lastname1,
+      String lastname2,
+      String location,
+      String phone,
+      String age,
+      String description,
+      String price,
+      String experience) {
     this.dniController.text = dni;
     this.nameController.text = name;
     this.lastname1Controller.text = lastname1;
     this.lastname2Controller.text = lastname2;
     this.locationController.text = location;
     this.phoneController.text = phone;
+    // Nuevos campos
+    this.ageController.text = age;
+    this.descriptionController.text = description;
+    this.priceController.text = price;
+    this.experienceController.text = experience;
   }
 
- void finishRegistration(context) {
-  String dni = dniController.text.trim();
-  String name = nameController.text.trim();
-  String lastname1 = lastname1Controller.text.trim();
-  String lastname2 = lastname2Controller.text.trim();
-  String location = locationController.text.trim();
-  String phone = phoneController.text.trim();
+  void finishRegistration2(context) {
+    String dni = dniController.text.trim();
+    String name = nameController.text.trim();
+    String lastname1 = lastname1Controller.text.trim();
+    String lastname2 = lastname2Controller.text.trim();
+    String location = locationController.text.trim();
+    String phone = phoneController.text.trim();
+    // Nuevos campos
+    String age = ageController.text.trim();
+    String description = descriptionController.text.trim();
+    String price = priceController.text.trim();
+    String experience = experienceController.text.trim();
 
-  if (dni.isEmpty || name.isEmpty || lastname1.isEmpty || lastname2.isEmpty || location.isEmpty || phone.isEmpty) {
-    Get.snackbar('Formulario Inválido', 'Debes completar todos los campos');
-    return;
-  }
+    if (dni.isEmpty ||
+        name.isEmpty ||
+        lastname1.isEmpty ||
+        lastname2.isEmpty ||
+        location.isEmpty ||
+        phone.isEmpty ||
+        age.isEmpty ||
+        description.isEmpty ||
+        price.isEmpty ||
+        experience.isEmpty) {
+      Get.snackbar('Formulario Inválido', 'Debes completar todos los campos');
+      return;
+    }
 
-  if (dni.length != 8) {
+    if (dni.length != 8) {
       Get.snackbar('Formulario Inválido', 'Tu dni tiene que ser de 8 digitos');
       return;
-  }
+    }
 
-  if (phone.length != 9) {
+    if (phone.length != 9) {
       Get.snackbar('Formulario Inválido', 'Tu celular que ser de 9 digitos');
       return;
-  }
+    }
 
-  if(imageFile == null) {
-    Get.snackbar('Formulario Inválido', 'Debes seleccionar una imagen de perfil');
-    return;
-  }
+    if (imageFile == null) {
+      Get.snackbar(
+          'Formulario Inválido', 'Debes seleccionar una imagen de perfil');
+      return;
+    }
 
-  saveAdditionalFormData(dni, name, lastname1, lastname2, location, phone);
-  register(context);
-}
-  
+    saveAdditionalFormData(dni, name, lastname1, lastname2, location, phone,
+        age, description, price, experience);
+    register(context);
+  }
 
   void register(BuildContext context) async {
     String email = emailController.text.trim();
@@ -112,11 +145,16 @@ class RegisterNurseController extends GetxController {
     String lastname2 = lastname2Controller.text.trim();
     String location = locationController.text.trim();
     String phone = phoneController.text.trim();
+    // Nuevos campos
+    String age = ageController.text.trim();
+    String description = descriptionController.text.trim();
+    String price = priceController.text.trim();
+    String experience = experienceController.text.trim();
 
-      ProgressDialog pd = ProgressDialog(context: context);
-      pd.show(max: 100, msg: 'Registrando usuario...');
+    ProgressDialog pd = ProgressDialog(context: context);
+    pd.show(max: 100, msg: 'Registrando enfermero...');
 
-      User user = User(
+    User user = User(
         email: email,
         password: password,
         dni: dni,
@@ -124,21 +162,26 @@ class RegisterNurseController extends GetxController {
         lastname1: lastname1,
         lastname2: lastname2,
         location: location,
-        phone: phone
-      );
+        phone: phone,
+        // Nuevos campos
+        age: age,
+        description: description,
+        price: price,
+        experience: experience);
 
-      Stream stream = await usersProviders.createWithImage(user, imageFile!);
-      stream.listen((res){
-        pd.close();
-        ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
+    Stream stream = await usersProviders.createWithImage2(user, imageFile!);
+    stream.listen((res) {
+      pd.close();
+      ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
 
-        if(responseApi.success == true) {
-          GetStorage().write('user', responseApi.data);
-          goToLoginPage();
-        }else{
-          Get.snackbar('Registro erroneo', responseApi.message ?? '', backgroundColor: Colors.red, colorText: Colors.white);
-        }
-      });
+      if (responseApi.success == true) {
+        GetStorage().write('user', responseApi.data);
+        goToLoginPage();
+      } else {
+        Get.snackbar('Registro erroneo', responseApi.message ?? '',
+            backgroundColor: Colors.red, colorText: Colors.white);
+      }
+    });
   }
 
   void goToLoginPage() {
@@ -153,8 +196,8 @@ class RegisterNurseController extends GetxController {
       update();
     }
   }
-  void showAlertdialog(BuildContext context) {
 
+  void showAlertdialog(BuildContext context) {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       backgroundColor: GlobalColors.primaryColor,
       padding: const EdgeInsets.all(10),
@@ -172,17 +215,12 @@ class RegisterNurseController extends GetxController {
       child: Text(
         'Galería',
         style: GoogleFonts.poppins(
-          fontSize: 18,
-          color: Colors.white,
-          fontWeight: FontWeight.normal
-        ),
+            fontSize: 18, color: Colors.white, fontWeight: FontWeight.normal),
         textAlign: TextAlign.center,
       ),
     );
 
-    Widget CameraButton = 
-    
-    ElevatedButton(
+    Widget CameraButton = ElevatedButton(
       style: raisedButtonStyle,
       onPressed: () {
         Get.back();
@@ -191,10 +229,7 @@ class RegisterNurseController extends GetxController {
       child: Text(
         'Cámara',
         style: GoogleFonts.poppins(
-          fontSize: 18,
-          color: Colors.white,
-          fontWeight: FontWeight.normal
-        ),
+            fontSize: 18, color: Colors.white, fontWeight: FontWeight.normal),
         textAlign: TextAlign.center,
       ),
     );
@@ -212,15 +247,14 @@ class RegisterNurseController extends GetxController {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         //crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: [
-          galleryButton,
-          CameraButton
-        ],
+        children: [galleryButton, CameraButton],
       ),
     );
-  
-    showDialog(context: context, builder: (BuildContext context) {
-      return alertDialog;
-    });
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
   }
 }

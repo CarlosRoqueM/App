@@ -1,6 +1,4 @@
 import 'package:app/src/pages/regisrterNurse/registerNurse_controller.dart';
-import 'package:app/src/pages/register/register_controller.dart';
-import 'package:app/src/pages/register/register_page2.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +7,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterNursePage extends StatelessWidget {
-
   //Asignar los cambios y roteo de las nuevas paginas para el registro del enfermero
 
   RegisterNurseController cont = Get.put(RegisterNurseController());
@@ -234,7 +231,7 @@ class RegisterNursePage extends StatelessWidget {
             ElevatedButton(
                 style: raisedButtonStyle,
                 onPressed: () {
-                  cont.gotoRegisterPage2();
+                  cont.gotoRegisterPageNurse2();
                 },
                 child: Container(
                   width: constraints.maxWidth * 1,

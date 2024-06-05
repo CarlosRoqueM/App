@@ -1,4 +1,4 @@
-import 'package:app/src/pages/register/register_controller.dart';
+import 'package:app/src/pages/regisrterNurse/registerNurse_controller.dart';
 import 'package:app/src/pages/register/splashRegister_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
 import 'package:app/utils/global_color.dart';
@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterPage2 extends StatelessWidget {
-  RegisterController cont = Get.put(RegisterController());
+class RegisterNursePage2 extends StatelessWidget {
+  RegisterNurseController cont = Get.put(RegisterNurseController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,12 @@ class RegisterPage2 extends StatelessWidget {
                     _apellidoPaterno(),
                     _apellidoMaterno(),
                     _location(),
-                    _phone()
+                    _phone(),
+                    // Nuevos campos
+                    _price(),
+                    _age(),
+                    _experience(),
+                    _description(),
                   ],
                 )
               ],
@@ -58,7 +63,7 @@ class RegisterPage2 extends StatelessWidget {
             onPressed: () => Get.back(),
             icon: const Icon(Icons.arrow_back_ios)),
         Text(
-          'Detalle sus Datos Personales',
+          'Datos del Enfermero',
           style: GoogleFonts.poppins(
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
           textAlign: TextAlign.right,
@@ -74,7 +79,7 @@ class RegisterPage2 extends StatelessWidget {
           onTap: () {
             cont.showAlertdialog(context);
           },
-          child: GetBuilder<RegisterController>(
+          child: GetBuilder<RegisterNurseController>(
             builder: (value) => CircleAvatar(
               backgroundImage: cont.imageFile != null
                   ? FileImage(cont.imageFile!)
@@ -159,7 +164,7 @@ class RegisterPage2 extends StatelessWidget {
   }
 
   Widget _phone() {
-    return _customTextField2(
+    return _customTextField(
       controller: cont.phoneController,
       labelText: 'Celular',
       keyboardType: TextInputType.number,
@@ -190,6 +195,41 @@ class RegisterPage2 extends StatelessWidget {
     );
   }
 
+  Widget _description() {
+    return Container(
+      height: 150, // Ajusta esto a la altura que prefieras
+      child: _customTextField(
+        controller: cont.ageController,
+        labelText: 'Descripción',
+        keyboardType: TextInputType.text,
+      ),
+    );
+  }
+
+  Widget _price() {
+    return _customTextField(
+      controller: cont.priceController,
+      labelText: 'Precio por hora',
+      keyboardType: TextInputType.number,
+    );
+  }
+
+  Widget _age() {
+    return _customTextField(
+      controller: cont.descriptionController,
+      labelText: 'Edad(años)',
+      keyboardType: TextInputType.number,
+    );
+  }
+
+  Widget _experience() {
+    return _customTextField(
+      controller: cont.experienceController,
+      labelText: 'Experiencia (años)',
+      keyboardType: TextInputType.number,
+    );
+  }
+
   Widget _nextButton(BuildContext context) {
     final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
       backgroundColor: GlobalColors.primaryColor,
@@ -207,7 +247,7 @@ class RegisterPage2 extends StatelessWidget {
               ElevatedButton(
                   style: raisedButtonStyle,
                   onPressed: () {
-                    cont.finishRegistration(context);
+                    cont.finishRegistration2(context);
                   },
                   child: Container(
                     width: constraints.maxWidth * 1,
