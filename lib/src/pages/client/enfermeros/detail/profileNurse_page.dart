@@ -272,7 +272,7 @@ class ProfileNursePage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${user?.description ?? 'N/A años'}',
+                    '${user?.age ?? 'N/A años'}',
                     style: GoogleFonts.poppins(
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
@@ -322,7 +322,7 @@ class ProfileNursePage extends StatelessWidget {
           left: 12,
           bottom: 6), // Change alignment to top left
       child: Text(
-        '${user?.age ?? 'N/A'}',
+        '${user?.description ?? 'N/A'}',
         style: GoogleFonts.poppins(
           fontSize: 15,
           fontWeight: FontWeight.w400,
