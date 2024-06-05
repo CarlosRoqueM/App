@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/src/models/rol.dart';
 import 'package:app/src/models/user.dart';
+import 'package:app/src/pages/client/booking/client_booking_page.dart';
 import 'package:app/src/pages/client/enfermeros/detail/profileNurse_page.dart';
 import 'package:app/src/providers/users_providers.dart';
 import 'package:flutter/cupertino.dart';
@@ -76,6 +77,15 @@ class HomeController extends GetxController {
     showMaterialModalBottomSheet(
       context: context,
       builder: (context) => ProfileNursePage(
+        user: user,
+      ),
+    );
+  }
+
+  void DetailNurse (BuildContext context, User user) {
+    showMaterialModalBottomSheet(
+      context: context,
+      builder: (context) => ClientBookingPage(
         user: user,
       ),
     );

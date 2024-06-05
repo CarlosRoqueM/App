@@ -5,6 +5,7 @@ import 'package:app/src/pages/client/enfermeros/clientMain_controller.dart';
 import 'package:app/src/pages/client/home/home_controller.dart';
 import 'package:app/src/pages/client/enfermeros/detail/profileNurse_page.dart';
 import 'package:app/src/widgets/Backgroundtemplate.dart';
+import 'package:app/utils/global_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
@@ -47,11 +48,20 @@ class HomeNursePage extends StatelessWidget {
                                 ),
               
                                 Text(
-                                'Busca enfermeros',
+                                'Bienvenido de nuevo',
                                 style: GoogleFonts.poppins(
                                   fontSize: 20,
                                   color: Color.fromRGBO(103, 114, 148, 16),
                                   fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+
+                                Text(
+                                '${cont.user.value.name} ${cont.user.value.lastname1}',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 20,
+                                  color: GlobalColors.primaryColor,
+                                  fontWeight: FontWeight.w300,
                                   ),
                                 ),
                               ]
@@ -64,39 +74,6 @@ class HomeNursePage extends StatelessWidget {
                               
                               ),
                             ]),
-                            SizedBox(
-                                height: 18,
-                              ),
-                              Container(
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(240, 240, 240, 1),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: GestureDetector(
-                                onTap: () => {
-                                  // Implementa la lógica para buscar aquí
-                                  contMain.setIndexToTwo(),
-                                },
-                                child: TextFormField(
-                                  autofocus: false,
-                                  
-                                  keyboardType: TextInputType.name,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Buscar ....',
-                                    enabled: false,
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(18),
-                                    prefixIcon: Icon(
-                                      Icons.search,
-                                      color: Color.fromRGBO(103, 114, 148, 16),
-                                    ),
-                                    hintStyle: TextStyle(
-                                      height: 1,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
                           ], 
                     ),
                   ),
@@ -107,7 +84,7 @@ class HomeNursePage extends StatelessWidget {
                         //crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Enfermeros Populares',
+                            'Nuevas reservas',
                             style: GoogleFonts.poppins(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,

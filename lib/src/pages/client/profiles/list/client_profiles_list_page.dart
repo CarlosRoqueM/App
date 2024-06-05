@@ -264,7 +264,7 @@ class ClientProfilesListPage extends StatelessWidget {
             ElevatedButton(
                 style: raisedButtonStyle,
                 onPressed: () {
-                  //cont.gotoRegisterPage2();
+                  cont.goToBookingpage();
                 },
                 child: Container(
                   width: constraints.maxWidth * 1,

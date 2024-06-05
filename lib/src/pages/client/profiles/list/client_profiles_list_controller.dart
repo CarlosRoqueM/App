@@ -40,5 +40,8 @@ class ClientProfilesListController extends GetxController {
     Get.toNamed('/client/profiles/create');
   }
   
+  void goToBookingpage() {
+    Get.toNamed('/client/booking');
+  }
 
 }

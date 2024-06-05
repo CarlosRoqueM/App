@@ -1,4 +1,5 @@
 
+import 'package:app/src/pages/client/booking/list/client_list_booking_page.dart';
 import 'package:app/src/pages/client/home/home_controller.dart';
 import 'package:app/src/pages/client/profile/info/profilePage.dart';
 import 'package:app/src/pages/client/settings/settings_page_controller.dart';
@@ -120,6 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             trailing: Icon(Icons.arrow_forward_ios, size: 20),
                             onTap: () {
                               // Navega a la página de reservas
+                              Get.to(ClientListBookingPage());
                             },
                           ),
                           Divider(),
