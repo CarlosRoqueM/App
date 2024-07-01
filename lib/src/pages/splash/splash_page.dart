@@ -29,12 +29,12 @@ class _SplashPageState extends State<SplashPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/img/logo.png', // Corregido el typo en 'assets'
+                'assets/img/LogoNuevo.png', // Corregido el typo en 'assets'
                 width: 200,
                 height: 150,
               ),
               Text(
-                'Nurse Hunt',
+                'CuidaTec',
                 style: GoogleFonts.rubik(
                   color: Colors.black,
                   fontSize: 30,

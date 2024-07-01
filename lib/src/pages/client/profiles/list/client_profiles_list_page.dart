@@ -73,7 +73,7 @@ class ClientProfilesListPage extends StatelessWidget {
           } else {
             return Center(
               child: Text(
-                'No hay direcciones registradas 2',
+                'No hay perfiles de pacientes registrados',
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 12,

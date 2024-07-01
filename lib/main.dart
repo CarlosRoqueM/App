@@ -57,8 +57,12 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: 'App Tesis',
       debugShowCheckedModeBanner: false,
-      //initialRoute: userSession.id != null ? '/main' : '/',
-      initialRoute: userSession.id != null ? userSession.roles!.length > 1 ? '/mainNurse' : '/main' : '/', //DEpendiendo del id redigira a diferentes rutas tanto del cliente como del enfermero
+      //initialRoute: userSession.id != null ? '/mainNurse' : '/',
+      initialRoute: userSession.id != null
+          ? userSession.roles!.length > 1
+              ? '/mainNurse'
+              : '/main'
+          : '/', //DEpendiendo del id redigira a diferentes rutas tanto del cliente como del enfermero
       getPages: [
         /*------------- General Page --------------------*/
         GetPage(name: '/', page: () => SplashPage()),
@@ -90,17 +94,15 @@ class _MyAppState extends State<MyApp> {
             name: '/client/profiles/create',
             page: () => ClientProfilesCreatePage()),
         GetPage(
-            name: '/client/profiles/list', page: () => ClientProfilesListPage()),
-        GetPage(
-            name: '/client/booking', page: () => ClientBookingPage()),
+            name: '/client/profiles/list',
+            page: () => ClientProfilesListPage()),
+        GetPage(name: '/client/booking', page: () => ClientBookingPage()),
 
         /*------------- Nurse Page --------------------*/
 
         GetPage(name: '/mainNurse', page: () => NurseMainPage()),
         GetPage(name: '/nurse/home', page: () => HomeNursePage()),
         GetPage(name: '/nurse/settings', page: () => SettingsNursePage()),
-
-        
       ],
       navigatorKey: Get.key,
     );

@@ -357,7 +357,7 @@ class HomePage extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                '${cont.nurses[index].id}/h',
+                                                '${cont.nurses[index].price}/h',
                                                 style: GoogleFonts.poppins(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.normal,

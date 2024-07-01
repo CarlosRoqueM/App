@@ -23,54 +23,55 @@ class ProfileNursePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size h = MediaQuery.of(context).size;
     return BackgroundTemplate(
-      child: SafeArea(
-        child: Scaffold(
-          body: Stack(
-            children: [
-              user!.image != null
-                  ? Image.network(
-                      user!.image!,
-                      height: h.height * 0.36,
-                      fit: BoxFit.cover,
-                    )
-                  : Image.asset(
-                      'assets/img/enfermera.jpg',
-                      height: h.height * 0.44,
-                      fit: BoxFit.cover,
-                    ),
-              Container(
-                child: Column(children: [
-                  _buildInfoRow(),
-                  _buildInfoRow2('12', Icons.star, price: 'S/. 50.00'),
-                  Container(
-                    padding: const EdgeInsets.only(right: 12, left: 12),
-                    child: const Divider(
-                      color: Color.fromRGBO(103, 114, 148, 16),
-                    ),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            user!.image != null
+                ? Image.network(
+                    user!.image!,
+                    height: h.height * 0.36,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    'assets/img/enfermera.jpg',
+                    height: h.height * 0.44,
+                    fit: BoxFit.cover,
                   ),
-                  _buildInfoRow3('5 años', year: '25'),
-                  _buildInfoRow4(),
-                  // _nextButton(), // Mover el botón fuera del Column
-                ]),
-                height: MediaQuery.of(context).size.height * 0.6,
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.32),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+            Container(
+              child: Column(children: [
+                _buildInfoRow(),
+                _buildInfoRow2('activo', Icons.star, price: 'S/. 50.00'),
+                Container(
+                  padding: const EdgeInsets.only(right: 12, left: 12),
+                  child: const Divider(
+                    color: Color.fromRGBO(103, 114, 148, 16),
                   ),
                 ),
+                _buildInfoRow3('5 años', year: '25'),
+                _buildInfoRow4(),
+                // _nextButton(), // Mover el botón fuera del Column
+              ]),
+              height: MediaQuery.of(context).size.height * 0.6,
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.32),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
               ),
-              Positioned(
-                // Nuevo Positioned widget para el botón
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: _nextButton(),
-              ),
-              Container(
+            ),
+            Positioned(
+              // Nuevo Positioned widget para el botón
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: _nextButton(),
+            ),
+            SafeArea(
+              bottom: false,
+              child: Container(
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,9 +124,9 @@ class ProfileNursePage extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -221,7 +222,13 @@ class ProfileNursePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Icon(icon),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('4.5'),
+                      Icon(icon),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -230,7 +237,7 @@ class ProfileNursePage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Reservas',
+                    'Estado',
                     style: GoogleFonts.poppins(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
